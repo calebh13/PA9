@@ -2,11 +2,18 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 
+#include "Ball.hpp"
+#include "Paddle.hpp"
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
+    //sf::CircleShape shape(100.f);
+
+    Ball gameBall(200, sf::Vector2f(300, 300), sf::Color::Red);
+    Paddle p1Paddle(sf::Vector2f(20, 200), sf::Vector2f(0, 400), sf::Color::White),
+           p2Paddle(sf::Vector2f(20, 200), sf::Vector2f(980, 400), sf::Color::White);
+    //shape.setFillColor(sf::Color::Green);
 
     sf::Clock clock;
     clock.restart();
@@ -22,8 +29,17 @@ int main()
                 window.close();
         }
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            // While velocity is less than max velocity, add acceleration
+            // Or use a constant speed
+        }
+
         window.clear();
-        window.draw(shape);
+        //window.draw(shape);
+        window.draw(gameBall);
+        window.draw(p1Paddle);
+        window.draw(p2Paddle);
         window.display();
 
         clock.restart(); // don't forget to clock.restart() !
