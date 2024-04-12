@@ -13,9 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\assets">
+      <UniqueIdentifier>{e71b22f5-615f-440b-8722-4e2620bda5a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mushroom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,5 +32,106 @@
     <ClInclude Include="Ball.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Mushroom.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\CEN_1BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_1HEAD.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_1SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_1SHTR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_2BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_2HEAD.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_2SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_2SHTR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_3BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_3HEAD.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_3SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_3SHTR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_4BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_4HEAD.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_4SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_4SHTR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_5BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_5HEAD.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_5SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_5SHTR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_6BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_6HEAD.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_6SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_6SHTR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_7BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_7HEAD.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_7SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_7SHTR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_8BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_8HEAD.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_8SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_8SHTR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
   </ItemGroup>
 </Project>

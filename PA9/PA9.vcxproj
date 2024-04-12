@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -134,10 +134,46 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mushroom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.hpp" />
+    <ClInclude Include="Mushroom.hpp" />
     <ClInclude Include="Paddle.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\CEN_1BODY.png" />
+    <Image Include="assets\CEN_1HEAD.png" />
+    <Image Include="assets\CEN_1SHRM.png" />
+    <Image Include="assets\CEN_1SHTR.png" />
+    <Image Include="assets\CEN_2BODY.png" />
+    <Image Include="assets\CEN_2HEAD.png" />
+    <Image Include="assets\CEN_2SHRM.png" />
+    <Image Include="assets\CEN_2SHTR.png" />
+    <Image Include="assets\CEN_3BODY.png" />
+    <Image Include="assets\CEN_3HEAD.png" />
+    <Image Include="assets\CEN_3SHRM.png" />
+    <Image Include="assets\CEN_3SHTR.png" />
+    <Image Include="assets\CEN_4BODY.png" />
+    <Image Include="assets\CEN_4HEAD.png" />
+    <Image Include="assets\CEN_4SHRM.png" />
+    <Image Include="assets\CEN_4SHTR.png" />
+    <Image Include="assets\CEN_5BODY.png" />
+    <Image Include="assets\CEN_5HEAD.png" />
+    <Image Include="assets\CEN_5SHRM.png" />
+    <Image Include="assets\CEN_5SHTR.png" />
+    <Image Include="assets\CEN_6BODY.png" />
+    <Image Include="assets\CEN_6HEAD.png" />
+    <Image Include="assets\CEN_6SHRM.png" />
+    <Image Include="assets\CEN_6SHTR.png" />
+    <Image Include="assets\CEN_7BODY.png" />
+    <Image Include="assets\CEN_7HEAD.png" />
+    <Image Include="assets\CEN_7SHRM.png" />
+    <Image Include="assets\CEN_7SHTR.png" />
+    <Image Include="assets\CEN_8BODY.png" />
+    <Image Include="assets\CEN_8HEAD.png" />
+    <Image Include="assets\CEN_8SHRM.png" />
+    <Image Include="assets\CEN_8SHTR.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
