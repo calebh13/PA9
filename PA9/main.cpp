@@ -21,7 +21,6 @@ int main()
 
     while (window.isOpen())
     {
-        std::cout << "Count = " << counter << "\n";
         float dt = clock.restart().asSeconds(); // clock.restart() returns time elapsed
         // Movement should rely on dt; if FPS is low, then dt is high, so things should move more.
         sf::Event event;
