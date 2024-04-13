@@ -1,10 +1,10 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "GameObject.hpp"
 
-// Make Mushroom a sprite
-
-class Mushroom : public sf::RectangleShape
+class Mushroom : public GameObject
 {
 public: 
-	Mushroom(const sf::Vector2f& pos);
+	using GameObject::GameObject; // inherit constructor
+	void hit();
 };

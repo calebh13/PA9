@@ -135,11 +135,12 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mushroom.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ball.hpp" />
+    <ClInclude Include="GameObject.hpp" />
     <ClInclude Include="Mushroom.hpp" />
-    <ClInclude Include="Paddle.hpp" />
+    <ClInclude Include="Player.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\CEN_1BODY.png" />
