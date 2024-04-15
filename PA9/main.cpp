@@ -29,11 +29,15 @@ int main()
             if (event.type == sf::Event::Closed) window.close();
         }
 
-        if (counter >= 60)
+        if (counter >= 60 && !m1.isDead())
         {
             std::cout << "hit\n";
             m1.hit();
             counter = 0;
+        }
+        else if (m1.isDead())
+        {
+            // once we have vectors of things to draw, delete m1 from vector
         }
 
         window.clear();

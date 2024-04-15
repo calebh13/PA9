@@ -27,6 +27,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Flea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mushroom.hpp">
@@ -36,6 +39,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flea.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Spider.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -134,6 +143,54 @@
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_8SHTR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_7FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_5SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_6FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_4SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_5FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_4FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_3SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_2SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_3FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_2FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_1SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_1FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_8FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_8SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_7SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\New folder\CEN_6SPDR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
   </ItemGroup>

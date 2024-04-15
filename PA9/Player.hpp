@@ -1,5 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
 
 class Player : public GameObject
@@ -12,6 +11,9 @@ public:
 	}
 	
 	void hit();
+	bool isDead() const;
+protected:
+	float getSpeedMult() const;
 private:
 	unsigned int lives;
 };
