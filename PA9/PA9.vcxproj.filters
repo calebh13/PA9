@@ -30,6 +30,9 @@
     <ClCompile Include="Flea.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CentipedeHead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mushroom.hpp">
@@ -45,6 +48,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Spider.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Centipede.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CentipedeHead.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CentipedeBody.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
