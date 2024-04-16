@@ -14,7 +14,7 @@ int main()
     sf::Texture texture1;
     texture1.loadFromFile("assets/CEN_1SHRM.png");
 
-    Mushroom m1 = Mushroom(sf::Vector2f(5, 5), sf::Vector2f(300, 300), texture1, 4);
+    Mushroom m1 = Mushroom(sf::Vector2f(5, 5), sf::Vector2f(0, 0), texture1, 4);
     int counter = 0;
 
     sf::Clock clock;
@@ -31,9 +31,9 @@ int main()
 
         if (counter >= 60 && !m1.isDead())
         {
-            std::cout << "hit\n";
-            m1.hit();
-            counter = 0;
+          //  std::cout << "hit\n";
+            //m1.hit();
+          //  counter = 0;
         }
         else if (m1.isDead())
         {
@@ -41,8 +41,17 @@ int main()
         }
 
         window.clear();
+
+
+        //Makes the mushroom slide across the screen
+        if (counter % 10 == 0) {
+            m1.glideTo((float) counter, (float) counter);
+        }
+        m1.update();
         window.draw(m1);
+
         window.display();
+
 
         counter++;
     }
