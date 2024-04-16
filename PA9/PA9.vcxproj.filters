@@ -30,6 +30,9 @@
     <ClCompile Include="Flea.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Spider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mushroom.hpp">
