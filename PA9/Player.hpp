@@ -1,5 +1,9 @@
 #pragma once
 #include "GameObject.hpp"
+#include <iostream>
+#define MAX_X 1000
+#define MAX_Y 1000
+#define MIN_Y 750
 
 class Player : public GameObject
 {
@@ -12,8 +16,11 @@ public:
 	
 	void hit();
 	bool isDead() const;
+	void move(sf::RenderWindow &gameWindow);
 protected:
 	float getSpeedMult() const;
 private:
 	unsigned int lives;
+	sf::Vector2i mousePosition;
+	sf::Vector2f mouseVisual;
 };

@@ -30,5 +30,4 @@ void Spider::movement()
 		}
 
 	}
-			
 }
