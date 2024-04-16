@@ -9,8 +9,11 @@ public:
 	{
 		// change collision box here?
 	}
+	// hit and isDead is inherited from GameObject 
 
-	void spiderMovement();
+	void movement();
+
+
 protected: 
 	float getSpeedMult() const; // spider speed const  thoughout levels??
 };
