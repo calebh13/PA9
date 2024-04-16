@@ -133,12 +133,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CentipedeHead.cpp" />
     <ClCompile Include="Flea.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.hpp" />
+    <ClInclude Include="Centipede.hpp" />
+    <ClInclude Include="CentipedeBody.hpp" />
+    <ClInclude Include="CentipedeHead.hpp" />
     <ClInclude Include="Flea.hpp" />
     <ClInclude Include="GameObject.hpp" />
     <ClInclude Include="Mushroom.hpp" />
@@ -162,6 +167,14 @@
     <Image Include="..\..\..\..\Downloads\New folder\CEN_7SPDR.png" />
     <Image Include="..\..\..\..\Downloads\New folder\CEN_8FLEA.png" />
     <Image Include="..\..\..\..\Downloads\New folder\CEN_8SPDR.png" />
+    <Image Include="..\..\..\..\Downloads\temp\CEN_1BLLT.png" />
+    <Image Include="..\..\..\..\Downloads\temp\CEN_2BLLT.png" />
+    <Image Include="..\..\..\..\Downloads\temp\CEN_3BLLT.png" />
+    <Image Include="..\..\..\..\Downloads\temp\CEN_4BLLT.png" />
+    <Image Include="..\..\..\..\Downloads\temp\CEN_5BLLT.png" />
+    <Image Include="..\..\..\..\Downloads\temp\CEN_6BLLT.png" />
+    <Image Include="..\..\..\..\Downloads\temp\CEN_7BLLT.png" />
+    <Image Include="..\..\..\..\Downloads\temp\CEN_8BLLT.png" />
     <Image Include="assets\CEN_1BODY.png" />
     <Image Include="assets\CEN_1HEAD.png" />
     <Image Include="assets\CEN_1SHRM.png" />

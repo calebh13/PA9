@@ -2,28 +2,22 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 //The number of discrete steps in an objects movement
+#define INTERPOLATION_FRAMES 10
 
 class GameObject : public sf::Sprite
 {
 public:
 	GameObject(const sf::Vector2f& scale = sf::Vector2f(1, 1), const sf::Vector2f& pos = sf::Vector2f(0, 0),
-		const sf::Texture& texture = sf::Texture(), unsigned int health = 1, unsigned int INTERPOLATION_FRAMES = 10) : sf::Sprite(texture)
+		const sf::Texture& texture = sf::Texture(), unsigned int health = 1) : sf::Sprite(texture)
 	{
 		this->setScale(scale);
 		this->setPosition(pos);
 		this->health = health;
 		this->movementInstructions = std::vector<sf::Vector2f>(INTERPOLATION_FRAMES);
 		this->moveFrame = -1;
-		this->INTERPOLATION_FRAMES = INTERPOLATION_FRAMES;
 	}
-	virtual void hit(void)
-	{
-		health -= 1;
-	}
-	virtual bool isDead(void) const
-	{
-		return health == 0;
-	}
+	virtual void hit(void) = 0; 
+	virtual bool isDead(void) const = 0;
 	void move(const sf::Vector2f& dir, float dt)
 	{
 		sf::Vector2f offset = sf::Vector2f(dir.x * dt * getSpeedMult(), dir.y * dt * getSpeedMult());
@@ -65,7 +59,10 @@ public:
 
 protected:
 	unsigned int health;
-	unsigned int INTERPOLATION_FRAMES;
+	// everything has a constant movement speed,
+	// so speed is essentially a multiplier for all objects of this type
+	virtual float getSpeedMult(void) const = 0;
+
 	//Collection of movements and the frame at which it is moving
 	std::vector<sf::Vector2f> movementInstructions;
 	int moveFrame;
@@ -79,9 +76,5 @@ protected:
 		else {
 			return sf::Vector2f();
 		}
-	}
-	virtual float getSpeedMult(void) const 
-	{
-		return 0.0f;
 	}
 };

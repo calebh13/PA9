@@ -30,6 +30,9 @@
     <ClCompile Include="Flea.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CentipedeHead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mushroom.hpp">
@@ -45,6 +48,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Spider.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Centipede.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CentipedeHead.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CentipedeBody.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -191,6 +206,30 @@
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="..\..\..\..\Downloads\New folder\CEN_6SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\temp\CEN_8BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\temp\CEN_1BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\temp\CEN_2BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\temp\CEN_3BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\temp\CEN_4BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\temp\CEN_5BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\temp\CEN_6BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\temp\CEN_7BLLT.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
   </ItemGroup>

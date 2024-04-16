@@ -6,7 +6,7 @@
 int main()
 {
     sf::ContextSettings settings;
-    settings.antialiasingLevel = 5; // Can be changed later 
+    settings.antialiasingLevel = 5; // Can be changed later
 
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "Centipede");
     window.setFramerateLimit(60);
@@ -21,8 +21,6 @@ int main()
 
     while (window.isOpen())
     {
-        float dt = clock.restart().asSeconds(); // clock.restart() returns time elapsed
-        // Movement should rely on dt; if FPS is low, then dt is high, so things should move more.
         sf::Event event;
         while (window.pollEvent(event)) // pollEvent uses event as a return param for the internal event queue
         {
@@ -31,13 +29,9 @@ int main()
 
         if (counter >= 60 && !m1.isDead())
         {
-          //  std::cout << "hit\n";
-            //m1.hit();
-          //  counter = 0;
-        }
-        else if (m1.isDead())
-        {
-            // once we have vectors of things to draw, delete m1 from vector
+            std::cout << "hit\n";
+            m1.hit();
+            counter = 0;
         }
 
         window.clear();
