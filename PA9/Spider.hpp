@@ -10,6 +10,7 @@ public:
 		// change collision box here?
 	}
 
+	void spiderMovement();
 protected: 
 	float getSpeedMult() const; // spider speed const  thoughout levels??
 };
