@@ -2,6 +2,8 @@
 #include "GameObject.hpp"
 #include <Windows.h>
 
+#define PLAYER_SPEED 20
+
 class Player : public GameObject
 {
 public:
@@ -15,6 +17,10 @@ public:
 	
 	void hit();
 	bool isDead() const;
+
+	//Added by Lucas 4/16
+	//Overrided update method for Player Object. Checks whether the player is moving and changes 
+	//Velocity Accordingly
 	void update() {
 		if (GetKeyState('W') & 0x8000) {
 			upVel = true;
@@ -39,14 +45,16 @@ public:
 		}else {
 			downVel = false;
 		}
-		this->glideTo(this->getPosition().x + (-leftVel + rightVel) * 10, this->getPosition().y + (-upVel + downVel) * 10);
-		this->setPosition(getNextMovement());
-	}
+
+		//Glides from the player's current position to the direction of highest velocity in x and y
+		this->glideTo(this->getPosition().x + (-leftVel + rightVel) * PLAYER_SPEED, this->getPosition().y + (-upVel + downVel) * PLAYER_SPEED);
+		this->setPosition(getNextMovement());	}
 
 protected:
 	float getSpeedMult() const;
 private:
 	unsigned int lives;
+	//Store whether the player is moving up,down,left,or right at any given moment
 	bool leftVel, rightVel, upVel, downVel;
 };
 
