@@ -7,8 +7,10 @@ int main()
 {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 5; // Can be changed later
+    
+    int windowDimension = (int)(std::min(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height) * 0.8);
 
-    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Centipede");
+    sf::RenderWindow window(sf::VideoMode(windowDimension, windowDimension), "Centipede", sf::Style::Titlebar | sf::Style::Close);
     window.setFramerateLimit(60);
 
     sf::Texture texture1;
