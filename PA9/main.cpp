@@ -17,7 +17,9 @@ int main()
 
     Mushroom m1 = Mushroom(sf::Vector2f(5, 5), sf::Vector2f(300, 300), texture1, 4);
     Player p1 = Player(sf::Vector2f(5, 5), sf::Vector2f(300, 300), texture1, 4); // temporarliy copied mushroom texture 
-    
+    p1.setOrigin(texture1.getSize().x/2, texture1.getSize().y/2); // centers the texture over the curser 
+    window.setMouseCursorVisible(false); // hides the mouse curser
+
     int counter = 0;
 
     sf::Clock clock;
