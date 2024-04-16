@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include "Mushroom.hpp"
+#include "Player.hpp"
 
 int main()
 {
@@ -15,6 +16,7 @@ int main()
     texture1.loadFromFile("assets/CEN_1SHRM.png");
 
     Mushroom m1 = Mushroom(sf::Vector2f(5, 5), sf::Vector2f(0, 0), texture1, 4);
+    Player p1 = Player(sf::Vector2f(5, 5), sf::Vector2f(50, 50), texture1, 4);
     int counter = 0;
 
     sf::Clock clock;
@@ -42,6 +44,8 @@ int main()
             m1.glideTo((float) counter, (float) counter);
         }
         m1.update();
+        p1.update();
+        window.draw(p1);
         window.draw(m1);
 
         window.display();
