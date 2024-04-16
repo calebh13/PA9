@@ -6,7 +6,7 @@
 int main()
 {
     sf::ContextSettings settings;
-    settings.antialiasingLevel = 5; // Can be changed later 
+    settings.antialiasingLevel = 5; // Can be changed later
 
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "Centipede");
     window.setFramerateLimit(60);

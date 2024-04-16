@@ -4,10 +4,9 @@
 class Centipede
 {
 	// Composite object, composed of CentipedeHead and CentipedeBody
-	// need to override the draw functions for the vector
+	// need to override the draw() function for Centipede, because we have to draw the head and body
 public:
-	// Need to figure out constructor: all CentipedeHead 
-	Centipede(unsigned int length, float speed)
+	Centipede(unsigned int length, unsigned int speed)
 	{
 		this->length = length;
 		this->speed = speed;
@@ -16,7 +15,7 @@ public:
 	}
 private:
 	unsigned int length;
-	float speed; // centipede is the only thing that changes speed
+	unsigned int speed; // centipede is the only thing that changes speed
 	CentipedeHead* head;
 	std::vector<CentipedeBody*> body;
 };

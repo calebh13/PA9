@@ -5,11 +5,12 @@ class GameObject : public sf::Sprite
 {
 public:
 	GameObject(const sf::Vector2f& scale = sf::Vector2f(1, 1), const sf::Vector2f& pos = sf::Vector2f(0, 0),
-		const sf::Texture& texture = sf::Texture(), unsigned int health = 1) : sf::Sprite(texture)
+		const sf::Texture& texture = sf::Texture(), unsigned int health = 1, unsigned int speed = 10) : sf::Sprite(texture)
 	{
 		this->setScale(scale);
 		this->setPosition(pos);
 		this->health = health;
+		this->speed = speed;
 	}
 	virtual void hit(void)
 	{
@@ -26,6 +27,7 @@ public:
 	}
 protected:
 	unsigned int health;
+	unsigned int speed;
 	// everything has a constant movement speed,
 	// so speed is essentially a multiplier for all objects of this type
 	virtual float getSpeedMult(void) const 
