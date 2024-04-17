@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="CentipedeHead.cpp" />
     <ClCompile Include="Flea.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameWrapper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mushroom.cpp" />
