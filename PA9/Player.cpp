@@ -11,12 +11,12 @@ bool Player::isDead() const
 	return lives == 0;
 }
 
-float Player::getSpeedMult() const
-{
-	return 0.2f;
-}
+//float Player::getSpeedMult() const
+//{
+//	return 0.2f;
+//}
 
-void Player::move(sf::RenderWindow &gameWindow)
+void Player::move(sf::RenderWindow &gameWindow) // created 4/16 by Jace
 {
 	int mouseX = sf::Mouse::getPosition(gameWindow).x, mouseY = sf::Mouse::getPosition(gameWindow).y;
 
@@ -47,4 +47,10 @@ void Player::move(sf::RenderWindow &gameWindow)
 
 	this->setPosition(mouseVisual); // sets postion of the sprite to mouse visual which gets its pos from mousePosition 
 
+}
+
+void Player::shoot(Bullet &bullets)
+{
+	bullets.setPosition(mouseVisual.x, mouseVisual.y);
+	
 }

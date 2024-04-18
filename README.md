@@ -1,6 +1,7 @@
-# [Game Name]
+# Centipede
 ### WSU CPTS 122 Spring 2024 PA 9
-Game description\
+A recreation of the 1981 Atari classic Centipede.\
 \
-Created by Caleb Hansen, [add names] ...\
-Powered by [SFML](https://www.sfml-dev.org/index.php)
+Created by Caleb Hansen, Lucas Phillips, Jace Dunn, and Elliott Tai.\
+All asset recreations by Caleb Hansen.\
+Powered by [SFML](https://www.sfml-dev.org/index.php).
