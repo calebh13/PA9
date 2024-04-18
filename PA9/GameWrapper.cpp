@@ -12,6 +12,15 @@ GameWrapper::GameWrapper(void)
     window->setFramerateLimit(60);
 }
 
+GameWrapper::~GameWrapper()
+{
+    delete window;
+    while (!list.empty())
+    {
+        list.pop_back(); // automatically calls destructor
+    }
+}
+
 void GameWrapper::run(void)
 {
 
@@ -51,4 +60,10 @@ void GameWrapper::run(void)
 
         counter++;
     }
+}
+void GameWrapper::startRound(unsigned int round)
+{
+    // Do palette swaps, generate mushrooms, create a new centipede object, etc.
+    // Because this takes multiple frames, maybe need to make some sort of status enum in gamewrapper
+    // that allows us to pause for animations?
 }
