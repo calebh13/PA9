@@ -5,10 +5,10 @@
 class GameObject : public sf::Sprite
 {
 public:
-	GameObject(const sf::Vector2f& scale = sf::Vector2f(1, 1), const sf::Vector2f& pos = sf::Vector2f(0, 0),
+	GameObject(unsigned int scale = 1, const sf::Vector2f& pos = sf::Vector2f(0, 0),
 		const sf::Texture& texture = sf::Texture(), unsigned int health = 1, unsigned int INTERPOLATION_FRAMES = 10) : sf::Sprite(texture)
 	{
-		this->setScale(scale);
+		this->setScale(scale, scale);
 		this->setPosition(pos);
 		this->health = health;
 		this->movementInstructions = std::vector<sf::Vector2f>(INTERPOLATION_FRAMES);

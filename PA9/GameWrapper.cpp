@@ -1,5 +1,7 @@
 #include "GameWrapper.hpp"
 #include "Mushroom.hpp"
+#include "Bullet.hpp"
+#include "Player.hpp"
 
 GameWrapper::GameWrapper(void)
 {
@@ -23,11 +25,22 @@ GameWrapper::~GameWrapper()
 
 void GameWrapper::run(void)
 {
-
     sf::Texture texture1;
     texture1.loadFromFile("assets/CEN_1SHRM.png");
 
-    Mushroom m1 = Mushroom(sf::Vector2f(10, 10), sf::Vector2f(0, 0), texture1, 4);
+    // bullet stuff 
+    Bullet bullets = Bullet(5, sf::Vector2f(300, 300), texture1, 4);
+    bullets.setOrigin((float)texture1.getSize().x / 2, (float)texture1.getSize().y / 2);
+    //sf::Texture bulletTexture;
+    //bulletTexture.loadFromFile();
+
+    Mushroom m1 = Mushroom(5, sf::Vector2f(300, 300), texture1, 4);
+
+    // p1 stuff
+    Player p1 = Player(5, sf::Vector2f(300, 300), texture1, 4); // temporarily copied mushroom texture
+    p1.setOrigin((float)texture1.getSize().x / 2, (float)texture1.getSize().y / 2); // centers the texture over the curser 
+    window->setMouseCursorVisible(false); // hides the mouse curser
+
     int counter = 0;
 
     sf::Clock clock;
@@ -38,7 +51,18 @@ void GameWrapper::run(void)
         while (window->pollEvent(event)) // pollEvent uses event as a return param for the internal event queue
         {
             if (event.type == sf::Event::Closed) window->close();
+
+            if (event.type == sf::Event::MouseButtonPressed) // we can check if its a left click or right click later
+            {
+                if (p1.canShoot())
+                {
+                    // Create a new bullet and add it to list of GameObjects
+                }
+            }
         }
+        p1.move(*window); // reads mouse position - window needs to be passed in so mouse position is relative to the window rather than the computer screen
+        // in the event the mouse is clicked a fire function needs to be done 
+
 
         if (counter >= 60 && !m1.isDead())
         {
@@ -50,13 +74,18 @@ void GameWrapper::run(void)
         window->clear();
 
         //Makes the mushroom slide across the screen
-        if (counter % 10 == 0) {
+        if (counter % 10 == 0)
+        {
             m1.glideTo((float)counter, (float)counter);
         }
+
+        // draw function 
         m1.update();
         window->draw(m1);
-        // setFramerateLimit causes a sleep function to be implicitly called right here, after draw() finishes
+        window->draw(p1);
+        window->draw(bullets);
         window->display();
+
 
         counter++;
     }
