@@ -16,13 +16,13 @@ void Player::move(sf::RenderWindow &gameWindow) // created 4/16 by Jace, modifie
 {
 	// exactly equal to localBounds.width because origin of local bounds is (0,0)
 	// and remember player is square	
-	int playerSize = this->getLocalBounds().width * this->getScale().x;
+	float playerSize = this->getLocalBounds().width * this->getScale().x;
 	// however, player is not centered
-	int xMax = gameWindow.getSize().x - (int)(0.5 * playerSize); 
-	int xMin = 0 + (int)(0.5 * playerSize);
+	float xMax = gameWindow.getSize().x - (0.5 * playerSize); 
+	float xMin = 0 + (0.5 * playerSize);
 	// 24/32 below so player can access bottom quarter of screen:
-	int yMin = 0 - (int)(0.5 * playerSize) + Grid::getGridPos(sf::Vector2i(0, 24), gameWindow).y;
-	int yMax = gameWindow.getSize().y - (int)(0.5 * playerSize);
+	float yMin = Grid::getGridPos(sf::Vector2i(0, 24), gameWindow).y - (0.5 * playerSize);
+	float yMax = gameWindow.getSize().y - (0.5 * playerSize);
 
 	this->mousePosition = sf::Mouse::getPosition(gameWindow); // "real" position of the mouse
 
