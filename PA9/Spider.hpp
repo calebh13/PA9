@@ -9,13 +9,8 @@ public:
 		const sf::Texture& texture = sf::Texture(), unsigned int health = 1, unsigned int speed = 10) 
 		: GameObject(scale, pos, texture, health, speed)
 	{
-		// change collision box here?
+
 	}
 	// hit and isDead is inherited from GameObject 
 
-	void movement();
-
-
-protected: 
-	float getSpeedMult() const; // spider speed const  thoughout levels??
 };

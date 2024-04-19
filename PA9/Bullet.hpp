@@ -5,9 +5,4 @@ class Bullet : public GameObject
 {
 public:
 	using GameObject::GameObject;
-
-	
-
-	// bullet speed 
-	float getSpeedMult() const;
 };

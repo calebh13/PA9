@@ -2,6 +2,7 @@
 #include "Mushroom.hpp"
 #include "Bullet.hpp"
 #include "Player.hpp"
+#include "Grid.hpp"
 
 GameWrapper::GameWrapper(void)
 {
@@ -12,6 +13,14 @@ GameWrapper::GameWrapper(void)
 
     window = new sf::RenderWindow(sf::VideoMode(windowDimension, windowDimension), "Centipede", sf::Style::Titlebar | sf::Style::Close, settings);
     window->setFramerateLimit(60);
+    window->setMouseCursorVisible(false);
+
+    // Create player:
+    sf::Texture playerTexture;
+    playerTexture.loadFromFile("assets/CEN_6HEAD.png"); // change to player texture later
+    this->player = new Player(5, Grid::getGridPos(sf::Vector2i(16, 28), *window), playerTexture);
+    this->player->setOrigin((float)playerTexture.getSize().x / 2, (float)playerTexture.getSize().y / 2); // centers the texture over the curser 
+    objList.push_back(this->player);
 }
 
 GameWrapper::~GameWrapper()
@@ -19,7 +28,7 @@ GameWrapper::~GameWrapper()
     delete window;
     while (!objList.empty())
     {
-        objList.pop_back(); // automatically calls destructor
+        objList.pop_back(); // automatically calls destructors
     }
 }
 
@@ -36,14 +45,7 @@ void GameWrapper::run(void)
 
     Mushroom m1 = Mushroom(5, sf::Vector2f(300, 300), texture1, 4);
 
-    // p1 stuff
-    Player p1 = Player(5, sf::Vector2f(300, 300), texture1, 4); // temporarily copied mushroom texture
-    p1.setOrigin((float)texture1.getSize().x / 2, (float)texture1.getSize().y / 2); // centers the texture over the curser 
-    window->setMouseCursorVisible(false); // hides the mouse curser
-
     int counter = 0;
-
-    sf::Clock clock;
 
     while (window->isOpen())
     {
@@ -54,20 +56,17 @@ void GameWrapper::run(void)
 
             if (event.type == sf::Event::MouseButtonPressed) // we can check if its a left click or right click later
             {
-                if (p1.canShoot())
+                if (player->canShoot())
                 {
                     // Create a new bullet and add it to list of GameObjects
                 }
             }
         }
-        p1.move(*window); // reads mouse position - window needs to be passed in so mouse position is relative to the window rather than the computer screen
-        // in the event the mouse is clicked a fire function needs to be done 
 
-        if (counter >= 60 && !m1.isDead())
+        if (counter % 60 == 1 && !m1.isDead())
         {
             std::cout << "hit\n";
             m1.hit();
-            counter = 0;
         }
 
         window->clear();
@@ -80,8 +79,9 @@ void GameWrapper::run(void)
 
         // draw function 
         m1.update();
+        player->(*window);
         window->draw(m1);
-        window->draw(p1);
+        window->draw(*player);
         window->draw(bullets);
         window->display();
 
@@ -94,4 +94,6 @@ void GameWrapper::startRound(unsigned int round)
     // Do palette swaps, generate mushrooms, create a new centipede object, etc.
     // Because this takes multiple frames, maybe need to make some sort of status enum in gamewrapper
     // that allows us to pause for animations?
+    
+    // set player position to center (and delete a mushroom if it's there)
 }

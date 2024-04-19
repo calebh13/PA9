@@ -1,5 +1,7 @@
 #include "Player.hpp"
+#include "Bullet.hpp"
 #include "Grid.hpp"
+#include <iostream>
 
 void Player::hit()
 {
@@ -12,6 +14,7 @@ bool Player::isDead() const
 	return lives == 0;
 }
 
+// TODO: change this to be update(), so we can call update() on everything
 void Player::move(sf::RenderWindow &gameWindow) // created 4/16 by Jace, modified 4/18 by Caleb
 {
 	// exactly equal to localBounds.width because origin of local bounds is (0,0)
@@ -46,7 +49,7 @@ void Player::move(sf::RenderWindow &gameWindow) // created 4/16 by Jace, modifie
 	//std::cout << "MouseX: " << mouseVisual.x << ", MouseY: " << mouseVisual.y << "\n";
 }
 
-bool Player::canShoot(void)
+bool Player::canShoot(void) const
 {
 	return shotCooldown == 0;
 }
