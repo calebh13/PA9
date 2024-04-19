@@ -17,9 +17,9 @@ GameWrapper::GameWrapper(void)
 GameWrapper::~GameWrapper()
 {
     delete window;
-    while (!list.empty())
+    while (!objList.empty())
     {
-        list.pop_back(); // automatically calls destructor
+        objList.pop_back(); // automatically calls destructor
     }
 }
 
@@ -62,7 +62,6 @@ void GameWrapper::run(void)
         }
         p1.move(*window); // reads mouse position - window needs to be passed in so mouse position is relative to the window rather than the computer screen
         // in the event the mouse is clicked a fire function needs to be done 
-
 
         if (counter >= 60 && !m1.isDead())
         {
