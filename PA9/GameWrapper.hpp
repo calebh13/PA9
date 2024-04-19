@@ -4,8 +4,11 @@ class GameWrapper
 {
 public:
 	GameWrapper(void);
+	~GameWrapper();
 	void run(void);
-	sf::RenderWindow* window; // public for now, but this should be changed later
 private:
 	std::vector<GameObject*> list;
+	sf::RenderWindow* window; // public for now, but this should be changed later
+
+	void startRound(unsigned int round);
 };	

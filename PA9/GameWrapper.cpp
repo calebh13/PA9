@@ -1,4 +1,5 @@
 #include "GameWrapper.hpp"
+#include "Mushroom.hpp"
 
 GameWrapper::GameWrapper(void)
 {
@@ -11,7 +12,58 @@ GameWrapper::GameWrapper(void)
     window->setFramerateLimit(60);
 }
 
+GameWrapper::~GameWrapper()
+{
+    delete window;
+    while (!list.empty())
+    {
+        list.pop_back(); // automatically calls destructor
+    }
+}
+
 void GameWrapper::run(void)
 {
-    // Game loop goes here.
+
+    sf::Texture texture1;
+    texture1.loadFromFile("assets/CEN_1SHRM.png");
+
+    Mushroom m1 = Mushroom(sf::Vector2f(10, 10), sf::Vector2f(0, 0), texture1, 4);
+    int counter = 0;
+
+    sf::Clock clock;
+
+    while (window->isOpen())
+    {
+        sf::Event event;
+        while (window->pollEvent(event)) // pollEvent uses event as a return param for the internal event queue
+        {
+            if (event.type == sf::Event::Closed) window->close();
+        }
+
+        if (counter >= 60 && !m1.isDead())
+        {
+            std::cout << "hit\n";
+            m1.hit();
+            counter = 0;
+        }
+
+        window->clear();
+
+        //Makes the mushroom slide across the screen
+        if (counter % 10 == 0) {
+            m1.glideTo((float)counter, (float)counter);
+        }
+        m1.update();
+        window->draw(m1);
+        // setFramerateLimit causes a sleep function to be implicitly called right here, after draw() finishes
+        window->display();
+
+        counter++;
+    }
+}
+void GameWrapper::startRound(unsigned int round)
+{
+    // Do palette swaps, generate mushrooms, create a new centipede object, etc.
+    // Because this takes multiple frames, maybe need to make some sort of status enum in gamewrapper
+    // that allows us to pause for animations?
 }

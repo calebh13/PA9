@@ -11,17 +11,27 @@
     <ClCompile Include="GameWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.hpp" />
-    <ClInclude Include="Centipede.hpp" />
-    <ClInclude Include="CentipedeBody.hpp" />
-    <ClInclude Include="CentipedeHead.hpp" />
-    <ClInclude Include="Flea.hpp" />
-    <ClInclude Include="GameObject.hpp" />
-    <ClInclude Include="Mushroom.hpp" />
-    <ClInclude Include="Player.hpp" />
-    <ClInclude Include="Spider.hpp" />
-    <ClInclude Include="GameWrapper.hpp" />
-    <ClInclude Include="Grid.hpp" />
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mushroom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CentipedeHead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Downloads\New folder\CEN_1FLEA.png" />
