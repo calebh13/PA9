@@ -1,5 +1,10 @@
 #pragma once
 #include "GameObject.hpp"
+#include "Bullet.hpp"
+#include <iostream>
+#define MAX_X 1500
+#define MAX_Y 1500
+#define MIN_Y 1250
 
 class Player : public GameObject
 {
@@ -13,8 +18,13 @@ public:
 	
 	void hit();
 	bool isDead() const;
-protected:
-	float getSpeedMult() const;
+	void move(sf::RenderWindow &gameWindow);
+	void shoot(Bullet &bullets);
+
+//protected: // speed not needed as player speed is constant and matches mouse speed 
+//	float getSpeedMult() const;
 private:
 	unsigned int lives;
+	sf::Vector2i mousePosition;
+	sf::Vector2f mouseVisual;
 };

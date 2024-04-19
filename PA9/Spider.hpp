@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.hpp"
+#include <time.h>
 
 class Spider : public GameObject
 {
@@ -10,4 +11,11 @@ public:
 	{
 		// change collision box here?
 	}
+	// hit and isDead is inherited from GameObject 
+
+	void movement();
+
+
+protected: 
+	float getSpeedMult() const; // spider speed const  thoughout levels??
 };
