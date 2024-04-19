@@ -8,6 +8,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Spider.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="GameWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.hpp" />
@@ -19,6 +20,8 @@
     <ClInclude Include="Mushroom.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Spider.hpp" />
+    <ClInclude Include="GameWrapper.hpp" />
+    <ClInclude Include="Grid.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Downloads\New folder\CEN_1FLEA.png" />

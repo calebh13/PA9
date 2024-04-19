@@ -24,6 +24,8 @@ public:
 	{
 		return health == 0;
 	}
+
+	// Todo: get rid of this function! No more dt
 	void move(const sf::Vector2f& dir, float dt)
 	{
 		sf::Vector2f offset = sf::Vector2f(dir.x * dt * getSpeedMult(), dir.y * dt * getSpeedMult());

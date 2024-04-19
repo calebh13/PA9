@@ -11,7 +11,7 @@ int main()
     sf::ContextSettings settings;
     settings.antialiasingLevel = 5; // Can be changed later
     
-    int windowDimension = (int)(std::min(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height) * 0.8);
+    int windowDimension = (int)((std::min(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height) * 0.8));
 
     sf::RenderWindow window(sf::VideoMode(windowDimension, windowDimension), "Centipede", sf::Style::Titlebar | sf::Style::Close);
     window.setFramerateLimit(60);
@@ -37,17 +37,19 @@ int main()
 
     sf::Clock clock;
 
-    while (game.window->isOpen())
+    while (window.isOpen())
     {
         sf::Event event;
-        while (game.window->pollEvent(event)) // pollEvent uses event as a return param for the internal event queue
+        while (window.pollEvent(event)) // pollEvent uses event as a return param for the internal event queue
         {
             if (event.type == sf::Event::Closed) window.close();
 
             if (event.type == sf::Event::MouseButtonPressed) // we can check if its a left click or right click later
             {
-                p1.shoot(bullets);
-             
+                if (p1.canShoot())
+                {
+                    // Create a new bullet and add it to list of GameObjects
+                }
             }
         }
         p1.move(window); // reads mouse position - window needs to be passed in so mouse position is relative to the window rather than the computer screen

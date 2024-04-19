@@ -150,6 +150,7 @@
     <ClInclude Include="Flea.hpp" />
     <ClInclude Include="GameObject.hpp" />
     <ClInclude Include="GameWrapper.hpp" />
+    <ClInclude Include="Grid.hpp" />
     <ClInclude Include="Mushroom.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Spider.hpp" />

@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Grid.hpp"
 
 void Player::hit()
 {
@@ -11,46 +12,41 @@ bool Player::isDead() const
 	return lives == 0;
 }
 
-//float Player::getSpeedMult() const
-//{
-//	return 0.2f;
-//}
-
-void Player::move(sf::RenderWindow &gameWindow) // created 4/16 by Jace
+void Player::move(sf::RenderWindow &gameWindow) // created 4/16 by Jace, modified 4/18 by Caleb
 {
-	int mouseX = sf::Mouse::getPosition(gameWindow).x, mouseY = sf::Mouse::getPosition(gameWindow).y;
+	// exactly equal to localBounds.width because origin of local bounds is (0,0)
+	// and remember player is square	
+	int playerSize = this->getLocalBounds().width * this->getScale().x;
+	// however, player is not centered
+	int xMax = gameWindow.getSize().x - (int)(0.5 * playerSize); 
+	int xMin = 0 + (int)(0.5 * playerSize);
+	// 24/32 below so player can access bottom quarter of screen:
+	int yMin = 0 - (int)(0.5 * playerSize) + Grid::getGridPos(sf::Vector2i(0, 24), gameWindow).y;
+	int yMax = gameWindow.getSize().y - (int)(0.5 * playerSize);
 
-	std::cout << "Mouse X: " << mouseX << " " << mouseY << std::endl; // outputs mouse position to screen
+	this->mousePosition = sf::Mouse::getPosition(gameWindow); // "real" position of the mouse
 
-	this->mousePosition = sf::Mouse::getPosition(gameWindow); // actually updates the mouth position within window 
-	this->mouseVisual = gameWindow.mapPixelToCoords(this->mousePosition); // allows pixel to "follow" the mouse
+	// X coord bound checking:
+	if (this->mousePosition.x < xMin) 
+		this->mouseVisual.x = xMin;
+	else if (this->mousePosition.x > xMax) 
+		this->mouseVisual.x = xMax;
+	else 
+		this->mouseVisual.x = this->mousePosition.x;
 
-	if (mouseX > MAX_X || mouseY > 1000 || mouseX < 0 || mouseY < MIN_Y) // bounds the mouse - the current texture is not centered so it appears as if it can go off
-	{																	//  the bottom and right side but it cannot ( with proper texture) 
-		if (mouseX < 0)
-		{
-			mouseVisual.x = 0;
-		}
-		else if (mouseX > MAX_X)
-		{
-			mouseVisual.x = MAX_X;
-		}
-		if (mouseY < MIN_Y)
-		{
-			mouseVisual.y = MIN_Y;
-		}
-		else if (mouseY > MAX_Y)
-		{
-			mouseVisual.y = MAX_Y;
-		}
-	}
+	// Y coord bound checking:
+	if (this->mousePosition.y < yMin)
+		this->mouseVisual.y = yMin;
+	else if (this->mousePosition.y > yMax) 
+		this->mouseVisual.y = yMax;
+	else 
+		this->mouseVisual.y = this->mousePosition.y;
 
-	this->setPosition(mouseVisual); // sets postion of the sprite to mouse visual which gets its pos from mousePosition 
-
+	this->setPosition(mouseVisual); // sets position of the sprite to mouse visual which gets its pos from mousePosition 
+	//std::cout << "MouseX: " << mouseVisual.x << ", MouseY: " << mouseVisual.y << "\n";
 }
 
-void Player::shoot(Bullet &bullets)
+bool Player::canShoot(void)
 {
-	bullets.setPosition(mouseVisual.x, mouseVisual.y);
-	
+	return shotCooldown == 0;
 }

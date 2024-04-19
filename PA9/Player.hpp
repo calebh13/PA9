@@ -2,9 +2,6 @@
 #include "GameObject.hpp"
 #include "Bullet.hpp"
 #include <iostream>
-#define MAX_X 1500
-#define MAX_Y 1500
-#define MIN_Y 1250
 
 class Player : public GameObject
 {
@@ -19,12 +16,13 @@ public:
 	void hit();
 	bool isDead() const;
 	void move(sf::RenderWindow &gameWindow);
-	void shoot(Bullet &bullets);
+	bool canShoot(void);
 
 //protected: // speed not needed as player speed is constant and matches mouse speed 
 //	float getSpeedMult() const;
 private:
 	unsigned int lives;
+	unsigned int shotCooldown;
 	sf::Vector2i mousePosition;
 	sf::Vector2f mouseVisual;
 };
