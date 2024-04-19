@@ -17,9 +17,10 @@ GameWrapper::GameWrapper(void)
 
     // Create player:
     sf::Texture playerTexture;
-    playerTexture.loadFromFile("assets/CEN_6HEAD.png"); // change to player texture later
-    this->player = new Player(5, Grid::getGridPos(sf::Vector2i(16, 28), *window), playerTexture);
-    this->player->setOrigin((float)playerTexture.getSize().x / 2, (float)playerTexture.getSize().y / 2); // centers the texture over the curser 
+    playerTexture.loadFromFile("assets/CEN_7HEAD.png"); // change to player texture later
+    textureList["Player"] = playerTexture;
+    this->player = new Player(5, Grid::getGridPos(sf::Vector2i(16, 28), *window), textureList.at("Player"));
+    this->player->setOrigin((float)playerTexture.getSize().x / 2, (float)playerTexture.getSize().y / 2); // centers the texture over the cursor
     objList.push_back(this->player);
 }
 
@@ -34,16 +35,19 @@ GameWrapper::~GameWrapper()
 
 void GameWrapper::run(void)
 {
-    sf::Texture texture1;
-    texture1.loadFromFile("assets/CEN_1SHRM.png");
+    sf::Texture shroomTexture, bulletTexture;
+    shroomTexture.loadFromFile("assets/CEN_1SHRM.png");
+    bulletTexture.loadFromFile("assets/CEN_1BLLT.png");
+    textureList["Mushroom"] = shroomTexture;
+    textureList["Bullet"] = bulletTexture;
 
     // bullet stuff 
-    Bullet bullets = Bullet(5, sf::Vector2f(300, 300), texture1, 4);
-    bullets.setOrigin((float)texture1.getSize().x / 2, (float)texture1.getSize().y / 2);
+    Bullet bullets = Bullet(2, sf::Vector2f(300, 300), textureList.at("Bullet"), 4);
+    bullets.setOrigin((float)textureList.at("Bullet").getSize().x / 2, (float)textureList.at("Bullet").getSize().y / 2);
     //sf::Texture bulletTexture;
     //bulletTexture.loadFromFile();
 
-    Mushroom m1 = Mushroom(5, sf::Vector2f(300, 300), texture1, 4);
+    Mushroom m1 = Mushroom(5, sf::Vector2f(300, 300), textureList.at("Mushroom"), 4);
 
     int counter = 0;
 
@@ -79,7 +83,8 @@ void GameWrapper::run(void)
 
         // draw function 
         m1.update();
-        player->(*window);
+        //player->draw(*window);
+        player->move(*window);
         window->draw(m1);
         window->draw(*player);
         window->draw(bullets);

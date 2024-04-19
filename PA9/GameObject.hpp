@@ -42,5 +42,5 @@ protected:
 
 	//Returns the next location the sprite should be drawn at in its movement cycle
 	sf::Vector2f getNextPos();
-	void genNewPosition()
+	void genNewPosition();
 };
