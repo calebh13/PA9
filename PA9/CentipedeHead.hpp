@@ -8,4 +8,5 @@ public:
 	using GameObject::GameObject;
 	// this is where logic for determining next move goes
 private:
+	int dir;
 };

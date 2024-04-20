@@ -20,7 +20,6 @@ void GameObject::glideTo(float x, float y) {
 	movementInstructions = std::vector<sf::Vector2f>(interpolationFrames);
 
 	const sf::Vector2f& currentPosition = this->getPosition();
-	std::cout << currentPosition.x << "\n";
 
 	for (int i = 1; i <= interpolationFrames; i++) {
 		movementInstructions[i - 1].x = currentPosition.x + (float)i * ((x - currentPosition.x) / interpolationFrames);
@@ -32,20 +31,21 @@ void GameObject::glideTo(float x, float y) {
 }
 
 //Sets the objects position to its next movement location
-void GameObject::update() {
-	this->setPosition(getNextPos());
+void GameObject::update(const sf::RenderWindow& window) {
+	// We will need to generate new instructions once we have been moving for time equal to interpolationFrames
+	if (moveFrame < interpolationFrames) {
+		moveFrame++;
+	} else {
+		genNewPosition(window);
+	}
+	this->setPosition(movementInstructions[moveFrame % interpolationFrames]);
+
 }
 
 //*********************************************************\\
 
-//Returns the next location the sprite should be drawn at in its movement cycle
-sf::Vector2f GameObject::getNextPos() {
-	if (!movementInstructions.empty()) {
-		moveFrame++;
-		return movementInstructions[moveFrame];// % (interpolationFrames)];
-	}
-	else {
-		std::cout << "ERROR: no movement instructions!";
-		throw std::exception();
-	}
+// Should be overridden
+void GameObject::genNewPosition(const sf::RenderWindow& window)
+{
+	movementInstructions[0] = sf::Vector2f(0, 0); 
 }

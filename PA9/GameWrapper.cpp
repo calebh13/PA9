@@ -10,6 +10,8 @@ GameWrapper::GameWrapper(void)
     settings.antialiasingLevel = 5; // Can be changed later
     
     int windowDimension = (int)(std::min(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height) * 0.8);
+    // objScale makes objects fit exactly inside 1 grid slot
+    this->objScale = (float)windowDimension / (16 * Grid::getGridDimension());
 
     window = new sf::RenderWindow(sf::VideoMode(windowDimension, windowDimension), "Centipede", sf::Style::Titlebar | sf::Style::Close, settings);
     window->setFramerateLimit(60);
@@ -19,7 +21,7 @@ GameWrapper::GameWrapper(void)
     sf::Texture playerTexture;
     playerTexture.loadFromFile("assets/CEN_7HEAD.png"); // change to player texture later
     textureList["Player"] = playerTexture;
-    this->player = new Player(5, Grid::getGridPos(sf::Vector2i(16, 28), *window), textureList.at("Player"));
+    this->player = new Player(this->objScale, Grid::getGridPos(12, 20, *window), textureList.at("Player"));
     this->player->setOrigin((float)playerTexture.getSize().x / 2, (float)playerTexture.getSize().y / 2); // centers the texture over the cursor
     objList.push_back(this->player);
 }
@@ -38,59 +40,56 @@ void GameWrapper::run(void)
     sf::Texture shroomTexture, bulletTexture;
     shroomTexture.loadFromFile("assets/CEN_1SHRM.png");
     bulletTexture.loadFromFile("assets/CEN_1BLLT.png");
-    textureList["Mushroom"] = shroomTexture;
-    textureList["Bullet"] = bulletTexture;
+    textureList.insert(std::pair<std::string, sf::Texture>("Mushroom", shroomTexture));
+    textureList.insert(std::pair<std::string, sf::Texture>("Bullet", bulletTexture));
 
-    // bullet stuff 
-    Bullet bullets = Bullet(2, sf::Vector2f(300, 300), textureList.at("Bullet"), 4);
-    bullets.setOrigin((float)textureList.at("Bullet").getSize().x / 2, (float)textureList.at("Bullet").getSize().y / 2);
     //sf::Texture bulletTexture;
     //bulletTexture.loadFromFile();
 
-    Mushroom m1 = Mushroom(5, sf::Vector2f(300, 300), textureList.at("Mushroom"), 4);
+    objList.push_back(new Mushroom(objScale, sf::Vector2f(Grid::getGridPos(8, 8, *window)), textureList.at("Mushroom"), 4));
+    GameObject* m1 = objList.back();
 
     int counter = 0;
 
     while (window->isOpen())
     {
         sf::Event event;
-        while (window->pollEvent(event)) // pollEvent uses event as a return param for the internal event queue
+        // pollEvent uses event as a return param for the internal event queue, so we must poll until queue is empty
+        while (window->pollEvent(event))
         {
             if (event.type == sf::Event::Closed) window->close();
-
             if (event.type == sf::Event::MouseButtonPressed) // we can check if its a left click or right click later
             {
                 if (player->canShoot())
                 {
                     // Create a new bullet and add it to list of GameObjects
+                    objList.push_back(new Bullet(2, player->getPosition(), textureList.at("Bullet"), 1, 1));
                 }
             }
         }
 
-        if (counter % 60 == 1 && !m1.isDead())
+        if (counter % 60 == 1 && !m1->isDead())
         {
             std::cout << "hit\n";
-            m1.hit();
+            m1->hit();
         }
 
         window->clear();
 
-        //Makes the mushroom slide across the screen
-        if (counter % 10 == 0)
+        // Real game loop:
+        for (int i = 0; i < objList.size(); i++)
         {
-            m1.glideTo((float)counter, (float)counter);
+            objList[i]->update(*window); // movement
+            // now handle collision stuff: e.g. bullet hitting mushroom, centipede, etc.
+        }
+        
+        // Draw loop: 
+        for (int i = 0; i < objList.size(); i++)
+        {
+            window->draw(*(objList[i]));
         }
 
-        // draw function 
-        m1.update();
-        //player->draw(*window);
-        player->move(*window);
-        window->draw(m1);
-        window->draw(*player);
-        window->draw(bullets);
         window->display();
-
-
         counter++;
     }
 }

@@ -5,6 +5,7 @@ class Centipede
 {
 	// Composite object, composed of CentipedeHead and CentipedeBody
 	// need to override the draw() function for Centipede, because we have to draw the head and body
+	// probably need to override even more functions to handle multiple centipedes
 public:
 	Centipede(unsigned int length, unsigned int speed)
 	{

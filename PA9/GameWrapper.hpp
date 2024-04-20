@@ -9,6 +9,7 @@ public:
 	void run(void);
 private:
 	std::vector<GameObject*> objList; // polymorphism!
+	float objScale;
 	// prevents textures from going out of scope, accessed using the name of the GameObject
 	std::map<std::string, sf::Texture> textureList;
 	sf::RenderWindow* window;

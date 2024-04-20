@@ -14,11 +14,12 @@ public:
 	
 	void hit();
 	bool isDead() const;
-	void move(sf::RenderWindow &gameWindow);
+	// todo: change this to be a GameObject function
 	bool canShoot(void) const;
 private:
 	unsigned int lives;
 	unsigned int shotCooldown;
 	sf::Vector2i mousePosition;
 	sf::Vector2f mouseVisual;
+	void genNewPosition(const sf::RenderWindow& window) override;
 };
