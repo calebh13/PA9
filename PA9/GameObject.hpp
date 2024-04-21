@@ -18,6 +18,7 @@ public:
 	}
 	virtual void hit(void);
 	virtual bool isDead(void) const;
+	virtual void collideWith(GameObject* other) = 0;
 
 	//********************************************************\\
 	//Created 4/15 by Lucas

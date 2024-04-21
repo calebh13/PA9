@@ -52,5 +52,5 @@ void GameObject::heal(void)
 // Should be overridden
 void GameObject::genNewPosition(const sf::RenderWindow& window)
 {
-	movementInstructions[0] = sf::Vector2f(0, 0); 
+	movementInstructions[0] = sf::Vector2f(0, 0);
 }
