@@ -7,7 +7,7 @@ public:
 	using GameObject::GameObject;
 
 	
-
+	void shoot();
 	// bullet speed 
 	float getSpeedMult() const;
 };

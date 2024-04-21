@@ -19,7 +19,7 @@ public:
 	void hit();
 	bool isDead() const;
 	void move(sf::RenderWindow &gameWindow);
-	void shoot(Bullet &bullets);
+	void setBulletPosition(Bullet &bullets);
 
 //protected: // speed not needed as player speed is constant and matches mouse speed 
 //	float getSpeedMult() const;

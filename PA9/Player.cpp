@@ -49,8 +49,7 @@ void Player::move(sf::RenderWindow &gameWindow) // created 4/16 by Jace
 
 }
 
-void Player::shoot(Bullet &bullets)
+void Player::setBulletPosition(Bullet &bullets)
 {
 	bullets.setPosition(mouseVisual.x, mouseVisual.y);
-	
 }
