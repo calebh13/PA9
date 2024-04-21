@@ -1,5 +1,8 @@
 #pragma once
 #include "GameObject.hpp"
+#include "CentipedeBody.hpp"
+#include "Mushroom.hpp"
+#include "Spider.hpp"
 
 class Bullet : public GameObject
 {
@@ -15,4 +18,7 @@ public:
 	void collideWith(GameObject* other);
 private:
 	void genNewPosition(const sf::RenderWindow& window);
+
+	void collideWith(CentipedeBody* cenBody);
+	void collideWith(Mushroom* mushroom);
 };

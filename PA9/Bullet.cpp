@@ -1,18 +1,35 @@
 #include "Bullet.hpp"
-#include "Mushroom.hpp"
-#include "Spider.hpp"
 
 void Bullet::genNewPosition(const sf::RenderWindow& window)
 {
-	this->glideTo(this->getPosition().x, this->getPosition().y - 20);
+	this->glideTo(this->getPosition().x, this->getPosition().y - 30);
 }
 
 void Bullet::collideWith(GameObject* other)
 {
-	Mushroom* m = dynamic_cast<Mushroom*>(other);
-	if (m != nullptr)
+	CentipedeBody* cenBody = dynamic_cast<CentipedeBody*>(other);
+	if (cenBody != nullptr)
 	{
-
+		this->collideWith(cenBody);
 	}
-	Spider* s = dynamic_cast<Spider*>(other);
+
+	Mushroom* mushroom = dynamic_cast<Mushroom*>(other);
+	if (mushroom != nullptr)
+	{
+		this->collideWith(mushroom);
+	}
+
+
+}
+
+
+void Bullet::collideWith(CentipedeBody* cenBody)
+{
+	cenBody->hit();
+}
+
+void Bullet::collideWith(Mushroom* mushroom)
+{
+	this->health = 0;
+	mushroom->hit();
 }
