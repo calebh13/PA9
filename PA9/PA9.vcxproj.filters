@@ -19,21 +19,12 @@
     <Filter Include="Header Files\GameObjects">
       <UniqueIdentifier>{53c325b1-5d76-45e3-90bd-c64b0d984edb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{d65182a3-dbfe-49b6-a4dd-ea4c9d8c5816}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mushroom.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Flea.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CentipedeHead.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameWrapper.cpp">
@@ -42,14 +33,26 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Grid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="CentipedeHead.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Flea.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Mushroom.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
     <ClCompile Include="Spider.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,9 +100,6 @@
     <Image Include="assets\CEN_1SHRM.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
-    <Image Include="assets\CEN_1SHTR.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
     <Image Include="assets\CEN_2BODY.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
@@ -107,9 +107,6 @@
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_2SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_2SHTR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_3BODY.png">
@@ -121,9 +118,6 @@
     <Image Include="assets\CEN_3SHRM.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
-    <Image Include="assets\CEN_3SHTR.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
     <Image Include="assets\CEN_4BODY.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
@@ -131,9 +125,6 @@
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_4SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_4SHTR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_5BODY.png">
@@ -145,9 +136,6 @@
     <Image Include="assets\CEN_5SHRM.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
-    <Image Include="assets\CEN_5SHTR.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
     <Image Include="assets\CEN_6BODY.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
@@ -155,9 +143,6 @@
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_6SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_6SHTR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_7BODY.png">
@@ -169,9 +154,6 @@
     <Image Include="assets\CEN_7SHRM.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
-    <Image Include="assets\CEN_7SHTR.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
     <Image Include="assets\CEN_8BODY.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
@@ -179,9 +161,6 @@
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_8SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_8SHTR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_1FLEA.png">
@@ -254,6 +233,30 @@
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_2BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_3PLYR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_4PLYR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_5PLYR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_6PLYR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_7PLYR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_8PLYR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_1PLYR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_2PLYR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
   </ItemGroup>

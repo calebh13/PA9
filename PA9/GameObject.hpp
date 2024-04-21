@@ -28,6 +28,9 @@ public:
 	//Sets the objects position to its next movement location
 	virtual void update(const sf::RenderWindow& window);
 
+	// only really needed for mushroom
+	void heal(void);
+
 	//*********************************************************\\
 
 protected:

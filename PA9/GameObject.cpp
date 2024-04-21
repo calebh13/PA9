@@ -42,6 +42,11 @@ void GameObject::update(const sf::RenderWindow& window) {
 
 }
 
+void GameObject::heal(void)
+{
+	return;
+}
+
 //*********************************************************\\
 
 // Should be overridden

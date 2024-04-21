@@ -7,6 +7,12 @@ void Mushroom::hit()
 	this->setTextureRect(sf::IntRect(0, 0, 16, (health * 4)));
 }
 
+void Mushroom::heal(void)
+{
+	health = 4;
+	setTextureRect(sf::IntRect(0, 0, 16, health * 4));
+}
+
 void Mushroom::genNewPosition(const sf::RenderWindow& window)
 {
 	this->movementInstructions[0] = this->getPosition();

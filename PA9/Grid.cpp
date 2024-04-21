@@ -1,6 +1,6 @@
 #include "Grid.hpp"
 #include "iostream"
-#define GRID_DIMENSION 24
+constexpr int GRID_DIMENSION = 24;
 
 int Grid::getGridDimension(void)
 {
