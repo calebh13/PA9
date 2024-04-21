@@ -52,3 +52,9 @@ bool Player::canShoot(void) const
 {
 	return shotCooldown == 0;
 }
+
+void Player::setBulletPosition(Bullet &bullets)
+{
+	
+	bullets.setPosition(mouseVisual.x, mouseVisual.y);
+}

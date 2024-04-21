@@ -11,4 +11,8 @@ public:
 		// Make all bullets centered
 		this->setOrigin((float)texture.getSize().x / 2, (float)texture.getSize().y / 2);
 	}
+	
+	void shoot();
+	// bullet speed 
+	float getSpeedMult() const;
 };
