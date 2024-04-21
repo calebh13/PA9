@@ -18,17 +18,12 @@ void Mushroom::collideWith(GameObject* other)
 	Bullet* b = dynamic_cast<Bullet*>(other);
 	if (b != nullptr)
 	{
-		this->collide(b);
+		this->hit();
+		b->hit();
 	}
 }
 
 void Mushroom::genNewPosition(const sf::RenderWindow& window)
 {
 	this->movementInstructions[0] = this->getPosition();
-}
-
-void Mushroom::collide(Bullet* b)
-{
-	this->hit();
-	b->hit();
 }

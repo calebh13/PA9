@@ -12,5 +12,4 @@ public:
 	void collideWith(GameObject* other);
 private:
 	void genNewPosition(const sf::RenderWindow& window);
-	void collide(Bullet* b);
 };

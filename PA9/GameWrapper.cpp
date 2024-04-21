@@ -121,6 +121,7 @@ void GameWrapper::run(void)
                 {
                     objList.erase(objList.begin() + i);
                     i--;
+                    j--;
                 }
 
                 if (objList[j]->isDead())
