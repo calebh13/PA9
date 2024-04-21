@@ -19,6 +19,6 @@ public:
 private:
 	void genNewPosition(const sf::RenderWindow& window);
 
-	void collideWith(CentipedeBody* cenBody);
-	void collideWith(Mushroom* mushroom);
+	void collide(CentipedeBody* cenBody);
+	void collide(Mushroom* mushroom);
 };

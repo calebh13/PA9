@@ -10,25 +10,26 @@ void Bullet::collideWith(GameObject* other)
 	CentipedeBody* cenBody = dynamic_cast<CentipedeBody*>(other);
 	if (cenBody != nullptr)
 	{
-		this->collideWith(cenBody);
+		this->collide(cenBody);
+		return;
 	}
 
 	Mushroom* mushroom = dynamic_cast<Mushroom*>(other);
 	if (mushroom != nullptr)
 	{
-		this->collideWith(mushroom);
+		this->collide(mushroom);
 	}
 
 
 }
 
 
-void Bullet::collideWith(CentipedeBody* cenBody)
+void Bullet::collide(CentipedeBody* cenBody)
 {
 	cenBody->hit();
 }
 
-void Bullet::collideWith(Mushroom* mushroom)
+void Bullet::collide(Mushroom* mushroom)
 {
 	this->health = 0;
 	mushroom->hit();
