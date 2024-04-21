@@ -91,24 +91,28 @@ void GameWrapper::run(void)
         while (window->pollEvent(event))
         {
             if (event.type == sf::Event::Closed) window->close();
-            if (event.type == sf::Event::MouseButtonPressed) // we can check if its a left click or right click later
+        }
+
+        // Get player input for shooting
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        {
+            if (player->shoot())
             {
-                if (player->canShoot()) 
-                {
-                    // Create a new bullet and add it to list of GameObjects
-                    objList.push_back(new Bullet(2, player->getPosition(), textureList.at("Bullet"), 1, 1));
-                }
+                // Create a new bullet and add it to list of GameObjects
+                objList.push_back(new Bullet(objScale, player->getPosition(), textureList.at("Bullet"), 1, 1));
             }
         }
+        
 
         // Real game loop:
         for (int i = 0; i < objList.size(); i++)
         {
+
             objList[i]->update(*window); // movement
             // collision loop here
         }
         
-        std::cout << "Player position: " << objList[0]->getPosition().x << ", " << objList[0]->getPosition().y << "\n";
+        //std::cout << "Player position: " << objList[0]->getPosition().x << ", " << objList[0]->getPosition().y << "\n";
 
         window->clear();
 
@@ -122,6 +126,7 @@ void GameWrapper::run(void)
 
         window->display();
         counter++;
+        player->reduceShotTimer();
     }
 }
 void GameWrapper::startRound(unsigned int round)

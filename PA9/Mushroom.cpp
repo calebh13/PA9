@@ -13,6 +13,11 @@ void Mushroom::heal(void)
 	setTextureRect(sf::IntRect(0, 0, 16, health * 4));
 }
 
+void Mushroom::collideWith(GameObject* other)
+{
+	return;
+}
+
 void Mushroom::genNewPosition(const sf::RenderWindow& window)
 {
 	this->movementInstructions[0] = this->getPosition();

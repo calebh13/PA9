@@ -1,7 +1,18 @@
 #include "Bullet.hpp"
+#include "Mushroom.hpp"
+#include "Spider.hpp"
 
-void Bullet::shoot()
+void Bullet::genNewPosition(const sf::RenderWindow& window)
 {
-	this->glideTo(this->getPosition().x, this->getPosition().y - 10 * this->getSpeedMult());
-	this->setPosition(this->getNextMovement());
+	this->glideTo(this->getPosition().x, this->getPosition().y - 20);
+}
+
+void Bullet::collideWith(GameObject* other)
+{
+	Mushroom* m = dynamic_cast<Mushroom*>(other);
+	if (m != nullptr)
+	{
+
+	}
+	Spider* s = dynamic_cast<Spider*>(other);
 }

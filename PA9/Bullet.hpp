@@ -12,7 +12,7 @@ public:
 		this->setOrigin((float)texture.getSize().x / 2, (float)texture.getSize().y / 2);
 	}
 	
-	void shoot();
-	// bullet speed 
-	float getSpeedMult() const;
+	void collideWith(GameObject* other);
+private:
+	void genNewPosition(const sf::RenderWindow& window);
 };

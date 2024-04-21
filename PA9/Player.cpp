@@ -45,16 +45,28 @@ void Player::genNewPosition(const sf::RenderWindow& window)
 		this->mouseVisual.y = this->mousePosition.y;
 
 	this->movementInstructions[0] = mouseVisual;
-	std::cout << "Mouse: (" << movementInstructions[0].x << ", " << movementInstructions[0].y << ")\n";
+	//std::cout << "Mouse: (" << movementInstructions[0].x << ", " << movementInstructions[0].y << ")\n";
 }
 
-bool Player::canShoot(void) const
+bool Player::shoot(void)
 {
-	return shotCooldown == 0;
+	if (shotCooldown == 0)
+	{
+		shotCooldown = 12;
+		return true;
+	}
+	else return false;
 }
 
-void Player::setBulletPosition(Bullet &bullets)
+void Player::reduceShotTimer(void)
 {
-	
-	bullets.setPosition(mouseVisual.x, mouseVisual.y);
+	if (shotCooldown != 0)
+	{
+		shotCooldown--;
+	}
+}
+
+void Player::collideWith(GameObject* other)
+{
+	return;
 }

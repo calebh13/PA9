@@ -14,10 +14,10 @@ public:
 	
 	void hit();
 	bool isDead() const;
-	// todo: change this to be a GameObject function
-	bool canShoot(void) const;
-	void move(sf::RenderWindow &gameWindow);
-	void setBulletPosition(Bullet &bullets);
+	bool shoot(void);
+	void reduceShotTimer(void);
+
+	void collideWith(GameObject* other);
 
 //protected: // speed not needed as player speed is constant and matches mouse speed 
 //	float getSpeedMult() const;
