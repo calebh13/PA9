@@ -11,12 +11,12 @@ public:
 	{
 		this->length = length;
 		this->speed = speed;
-		this->head = new CentipedeHead();
-		body.resize(length - 1);
+		//this->head = new CentipedeHead();
+		//body.resize(length - 1);
 	}
 private:
 	unsigned int length;
 	unsigned int speed; // centipede is the only thing that changes speed
-	CentipedeHead* head;
-	std::vector<CentipedeBody*> body;
+	//CentipedeHead* head;
+	//std::vector<CentipedeBody*> body;
 };
