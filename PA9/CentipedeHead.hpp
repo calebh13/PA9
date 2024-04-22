@@ -9,4 +9,6 @@ public:
 	// this is where logic for determining next move goes
 private:
 	int dir;
+
+	void genNewPosition(const sf::RenderWindow& window);
 };

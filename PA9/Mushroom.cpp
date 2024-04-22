@@ -15,7 +15,12 @@ void Mushroom::heal(void)
 
 void Mushroom::collideWith(GameObject* other)
 {
-	return;
+	Bullet* b = dynamic_cast<Bullet*>(other);
+	if (b != nullptr)
+	{
+		this->hit();
+		b->hit();
+	}
 }
 
 void Mushroom::genNewPosition(const sf::RenderWindow& window)

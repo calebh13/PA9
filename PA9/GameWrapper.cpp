@@ -107,9 +107,29 @@ void GameWrapper::run(void)
         // Real game loop:
         for (int i = 0; i < objList.size(); i++)
         {
-
             objList[i]->update(*window); // movement
-            // collision loop here
+            
+            // Collision loop:
+            for (int j = i + 1; j < objList.size(); j++)
+            {
+                if (objList[i]->getGlobalBounds().intersects(objList[j]->getGlobalBounds()))
+                {
+                    objList[i]->collideWith(objList[j]);
+                }
+
+                if (objList[i]->isDead())
+                {
+                    objList.erase(objList.begin() + i);
+                    i--;
+                    j--;
+                }
+
+                if (objList[j]->isDead())
+                {
+                    objList.erase(objList.begin() + j);
+                    j--;
+                }
+            }
         }
         
         //std::cout << "Player position: " << objList[0]->getPosition().x << ", " << objList[0]->getPosition().y << "\n";
