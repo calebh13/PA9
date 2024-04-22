@@ -260,4 +260,7 @@
       <Filter>Resource Files\assets</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
+  </ItemGroup>
 </Project>
