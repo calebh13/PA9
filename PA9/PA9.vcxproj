@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="CentipedeBody.cpp" />
     <ClCompile Include="CentipedeHead.cpp" />
     <ClCompile Include="Flea.cpp" />
     <ClCompile Include="GameObject.cpp" />

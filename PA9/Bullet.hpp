@@ -3,6 +3,8 @@
 #include "CentipedeBody.hpp"
 #include "Mushroom.hpp"
 #include "Spider.hpp"
+//#include "CentipedeHead.hpp"
+#include "Flea.hpp"
 
 class Bullet : public GameObject
 {

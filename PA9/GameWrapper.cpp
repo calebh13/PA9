@@ -62,6 +62,8 @@ GameWrapper::GameWrapper(void)
         used.push_back(cur);
         objList.push_back(new Mushroom(objScale, sf::Vector2f(Grid::getGridPos(cur.x, cur.y, *window)), textureList.at("Mushroom"), 4));
     }
+    //test collide
+    objList.push_back(new CentipedeBody(objScale, player->getPosition(), textureList.at("Body"), 1, 1));
 }
 
 GameWrapper::~GameWrapper()

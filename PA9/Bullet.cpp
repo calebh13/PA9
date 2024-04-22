@@ -23,5 +23,34 @@ void Bullet::collideWith(GameObject* other)
 		return;
 	}
 
+	//not working
+	//CentipedeHead* centipedeHead = dynamic_cast<CentipedeHead*>(other);
+	//if (centipedeHead != nullptr)
+	//{
+	//	centipedeHead->hit();
+	//	this->health = 0;
+	//	return;
+	//}
+
+	Flea* flea = dynamic_cast<Flea*>(other);
+	if (flea != nullptr)
+	{
+		flea->hit();
+		this->health = 0;
+		return;
+	}
+
+	//no collide with player
+
+	Spider* spider = dynamic_cast<Spider*>(other);
+	if (flea != nullptr)
+	{
+		spider->hit();
+		this->health = 0;
+		return;
+	}
+
+	
+
 
 }
