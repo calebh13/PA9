@@ -4,7 +4,7 @@
 
 void Bullet::genNewPosition(const sf::RenderWindow& window)
 {
-	this->glideTo(this->getPosition().x, this->getPosition().y - 20);
+	this->glideTo(this->getPosition().x, this->getPosition().y - 30);
 }
 
 void Bullet::collideWith(GameObject* other)
