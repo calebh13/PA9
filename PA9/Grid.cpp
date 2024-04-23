@@ -7,13 +7,12 @@ int Grid::getGridDimension(void)
 	return GRID_DIMENSION;
 }
 
-void Grid::snapToGrid(sf::Vector2f& pos, const sf::RenderWindow& window)
+sf::Vector2f Grid::snapToGrid(const sf::Vector2f& pos, const sf::RenderWindow& window)
 {
 	// grid is 32x32, so each cell is the window size / 32
 	// also, window will always be square, so x == y
 	float cellSize = (float)window.getSize().x / GRID_DIMENSION;
-	pos.x -= fmodf(pos.x, cellSize);
-	pos.y -= fmodf(pos.y, cellSize);
+	return sf::Vector2f(pos.x - fmodf(pos.x, cellSize), pos.y - fmodf(pos.y, cellSize));
 }
 
 sf::Vector2i Grid::getGridIndices(const sf::Vector2f& pos, const sf::RenderWindow& window)

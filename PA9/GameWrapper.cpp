@@ -3,6 +3,7 @@
 #include "Bullet.hpp"
 #include "Player.hpp"
 #include "Grid.hpp"
+#include "CentipedeHead.hpp"
 
 GameWrapper::GameWrapper(void)
 {
@@ -117,14 +118,14 @@ void GameWrapper::run(void)
                     objList[i]->collideWith(objList[j]);
                 }
 
-                if (objList[i]->isDead())
+                if (objList[i]->isDead() == action::DESTROY)
                 {
                     objList.erase(objList.begin() + i);
                     i--;
                     j--;
                 }
 
-                if (objList[j]->isDead())
+                if (objList[j]->isDead() == action::DESTROY)
                 {
                     objList.erase(objList.begin() + j);
                     j--;
@@ -170,6 +171,10 @@ void GameWrapper::startRound(unsigned int round)
     }
     
     // Now we create a new centipede object
+    // Spawn a centipede right above the top of the screen, and it will go down 1 square then immediately go right
+
+    objList.push_back(new CentipedeHead(objScale, Grid::getGridPos(Grid::getGridDimension() / 2, 0, *window), \
+        textureList.at("Head"), 1));
 
     // set player position to center
     player->setPosition(Grid::getGridPos(12, 20, *window));

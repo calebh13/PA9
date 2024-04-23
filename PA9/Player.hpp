@@ -13,7 +13,7 @@ public:
 	}
 	
 	void hit();
-	bool isDead() const;
+	enum action isDead() const;
 	bool shoot(void);
 	void reduceShotTimer(void);
 

@@ -1,14 +1,16 @@
 #pragma once
 #include "GameObject.hpp"
-#include "Centipede.hpp"
+#include "Grid.hpp"
+#include "CentipedePart.hpp"
 
-class CentipedeHead : public GameObject
+
+class CentipedeHead : public CentipedePart
 {
-public:
-	using GameObject::GameObject;
-	// this is where logic for determining next move goes
-private:
-	int dir;
 
+public:
+	using CentipedePart::CentipedePart;
+	void collideWith(GameObject* other);
+	enum action isDead(void) const;
+private:
 	void genNewPosition(const sf::RenderWindow& window);
 };

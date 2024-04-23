@@ -25,5 +25,5 @@ void Mushroom::collideWith(GameObject* other)
 
 void Mushroom::genNewPosition(const sf::RenderWindow& window)
 {
-	this->movementInstructions[0] = this->getPosition();
+	this->glideTo(this->getPosition().x, this->getPosition().y);
 }

@@ -5,13 +5,19 @@
 
 void Player::hit()
 {
-	lives -= 1;
-	// maybe do some animation stuff as well, not sure where that should happen exactly
+	health -= 1;
 }
 
-bool Player::isDead() const
+enum action Player::isDead() const
 {
-	return lives == 0;
+	if (health == 0)
+	{
+		return static_cast<action>(RESPAWN);
+	}
+	else
+	{
+		return static_cast<action>(NOTHING);
+	}
 }
 
 void Player::genNewPosition(const sf::RenderWindow& window)

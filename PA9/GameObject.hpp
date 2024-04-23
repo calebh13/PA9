@@ -2,6 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+enum action
+{
+	NOTHING, DESTROY, RESPAWN, SPLIT_CENTIPEDE, CENTIPEDE_HEAD_MOVE, CENTIPEDE_DESTROYED
+};
+
 class GameObject : public sf::Sprite
 {
 public:
@@ -17,7 +22,7 @@ public:
 		this->interpolationFrames = interpolationFrames;
 	}
 	virtual void hit(void);
-	virtual bool isDead(void) const;
+	virtual enum action isDead(void) const;
 	virtual void collideWith(GameObject* other) = 0;
 
 	//********************************************************\\
@@ -27,7 +32,7 @@ public:
 	void glideTo(float x, float y);
 	
 	//Sets the objects position to its next movement location
-	virtual void update(const sf::RenderWindow& window);
+	void update(const sf::RenderWindow& window);
 
 	// only really needed for mushroom
 	void heal(void);
