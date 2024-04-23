@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.hpp"
 #include <time.h>
+#include "Bullet.hpp"
 
 class Spider : public GameObject
 {
@@ -12,5 +13,5 @@ public:
 
 	}
 	// hit and isDead is inherited from GameObject 
-
+	void collideWith(GameObject* other);
 };
