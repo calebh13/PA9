@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.hpp"
 #include "Bullet.hpp"
+#include "Player.hpp"
 
 class Mushroom : public GameObject
 {

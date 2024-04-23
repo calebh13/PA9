@@ -56,15 +56,13 @@ GameWrapper::GameWrapper(void)
             {
                 foundMatch = true;
                 cur.x = rand() % Grid::getGridDimension();
-                cur.y = rand() % (int)(Grid::getGridDimension() / 1.5);
+                cur.y = rand() % (int)(Grid::getGridDimension() / 1.25);
             }
             if (foundMatch) break;
         }
         used.push_back(cur);
         objList.push_back(new Mushroom(objScale, sf::Vector2f(Grid::getGridPos(cur.x, cur.y, *window)), textureList.at("Mushroom"), 4));
     }
-    //test collide
-    objList.push_back(new CentipedeHead(objScale, player->getPosition(), textureList.at("Head"), 1, 1));
 }
 
 GameWrapper::~GameWrapper()
@@ -120,17 +118,32 @@ void GameWrapper::run(void)
                     objList[i]->collideWith(objList[j]);
                 }
 
-                if (objList[i]->isDead() == action::DESTROY)
+                switch (objList[i]->isDead())
                 {
+                case action::DESTROY:
                     objList.erase(objList.begin() + i);
                     i--;
                     j--;
+                    break;
+                case action::CENTIPEDE_DESTROYED:
+                    objList.erase(objList.begin() + i);
+                    i--;
+                    j--;
+                    // todo later: subtract from centipede counter
+                    break;
                 }
 
-                if (objList[j]->isDead() == action::DESTROY)
+                switch (objList[j]->isDead())
                 {
+                case action::DESTROY:
                     objList.erase(objList.begin() + j);
                     j--;
+                    break;
+                case action::CENTIPEDE_DESTROYED:
+                    objList.erase(objList.begin() + i);
+                    j--;
+                    // todo later: subtract from centipede counter
+                    break;
                 }
             }
         }
@@ -176,7 +189,7 @@ void GameWrapper::startRound(unsigned int round)
     // Spawn a centipede right above the top of the screen, and it will go down 1 square then immediately go right
 
     objList.push_back(new CentipedeHead(objScale, Grid::getGridPos(Grid::getGridDimension() / 2, 0, *window), \
-        textureList.at("Head"), 1));
+        textureList.at("Head"), 1, 6, DOWN, RIGHT));
 
     // set player position to center
     player->setPosition(Grid::getGridPos(12, 20, *window));

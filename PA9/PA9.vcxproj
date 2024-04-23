@@ -160,6 +160,9 @@
     <ClInclude Include="Spider.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Image Include="assets\CEN_1BLLT.png" />
     <Image Include="assets\CEN_1BODY.png" />
     <Image Include="assets\CEN_1FLEA.png" />
@@ -216,9 +219,6 @@
     <Image Include="assets\CEN_8PLYR.png" />
     <Image Include="assets\CEN_8SHRM.png" />
     <Image Include="assets\CEN_8SPDR.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

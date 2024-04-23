@@ -22,7 +22,10 @@ enum action Player::isDead() const
 
 void Player::genNewPosition(const sf::RenderWindow& window)
 {
-	// exactly equal to localBounds.width because origin of local bounds is (0,0)
+	// Store lastvalidpos *before* making any changes
+	this->lastValidPosition = this->getPosition();
+
+	// size is exactly equal to localBounds.width because origin of local bounds is (0,0)
 	// and remember player is square	
 	float playerSize = this->getLocalBounds().width * this->getScale().x;
 	// however, player is not centered
@@ -72,7 +75,35 @@ void Player::reduceShotTimer(void)
 	}
 }
 
+void Player::returnToValidPos(void)
+{
+	this->setPosition(lastValidPosition);
+}
+
 void Player::collideWith(GameObject* other)
 {
-	return;
+	Mushroom* m = dynamic_cast<Mushroom*>(other);
+	if (m != nullptr)
+	{
+		this->returnToValidPos();
+		return;
+	}
+
+	CentipedePart* cen = dynamic_cast<CentipedePart*>(other);
+	if (cen != nullptr)
+	{
+		cen->hit();
+		this->hit();
+		return;
+	}
+
+	Flea* flea = dynamic_cast<Flea*>(other);
+	if (flea != nullptr)
+	{
+		flea->hit();
+		this->hit();
+		return;
+	}
+
+
 }

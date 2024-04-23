@@ -18,7 +18,7 @@ public:
 		this->health = health;
 		this->movementInstructions = std::vector<sf::Vector2f>(interpolationFrames);
 		this->moveFrame = -1;
-		//The number of discrete steps in an objects movement to any given point
+		// The number of discrete steps in an objects movement to any given point
 		this->interpolationFrames = interpolationFrames;
 	}
 	virtual void hit(void);

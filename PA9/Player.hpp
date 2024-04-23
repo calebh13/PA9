@@ -10,12 +10,15 @@ public:
 	{
 		this->lives = lives;
 		this->shotCooldown = 0;
+		this->lastValidPosition = pos;
 	}
 	
 	void hit();
 	enum action isDead() const;
 	bool shoot(void);
 	void reduceShotTimer(void);
+
+	void returnToValidPos(void);
 
 	void collideWith(GameObject* other);
 
@@ -24,5 +27,6 @@ private:
 	unsigned int shotCooldown;
 	sf::Vector2i mousePosition;
 	sf::Vector2f mouseVisual;
+	sf::Vector2f lastValidPosition;
 	void genNewPosition(const sf::RenderWindow& window) override;
 };

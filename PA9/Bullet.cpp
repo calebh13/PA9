@@ -17,7 +17,7 @@ void Bullet::collideWith(GameObject* other)
 	if (cenBody != nullptr)
 	{
 		cenBody->hit();
-		this->health = 0;
+		this->hit();
 		return;
 	}
 
@@ -25,16 +25,15 @@ void Bullet::collideWith(GameObject* other)
 	if (mushroom != nullptr)
 	{
 		mushroom->hit();
-		this->health = 0;
+		this->hit();
 		return;
 	}
 
-	//not working
 	CentipedeHead* centipedeHead = dynamic_cast<CentipedeHead*>(other);
 	if (centipedeHead != nullptr)
 	{
 		centipedeHead->hit();
-		this->health = 0;
+		this->hit();
 		return;
 	}
 
@@ -42,7 +41,7 @@ void Bullet::collideWith(GameObject* other)
 	if (flea != nullptr)
 	{
 		flea->hit();
-		this->health = 0;
+		this->hit();
 		return;
 	}
 
@@ -52,11 +51,7 @@ void Bullet::collideWith(GameObject* other)
 	if (spider != nullptr)
 	{
 		spider->hit();
-		this->health = 0;
+		this->hit();
 		return;
 	}
-
-	
-
-
 }
