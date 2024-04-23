@@ -11,7 +11,7 @@ class CentipedePart : public GameObject
 
 public:
 	CentipedePart(unsigned int scale = 1, const sf::Vector2f& pos = sf::Vector2f(0, 0),
-		const sf::Texture& texture = sf::Texture(), unsigned int health = 1, unsigned int interpolationFrames = 15, enum dir d = dir::DOWN)
+		const sf::Texture& texture = sf::Texture(), unsigned int health = 1, unsigned int interpolationFrames = 10, enum dir d = dir::DOWN)
 		: GameObject(scale, pos, texture, health, interpolationFrames)
 	{
 		this->nextDir = d;

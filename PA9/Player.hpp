@@ -19,8 +19,6 @@ public:
 
 	void collideWith(GameObject* other);
 
-//protected: // speed not needed as player speed is constant and matches mouse speed 
-//	float getSpeedMult() const;
 private:
 	unsigned int lives;
 	unsigned int shotCooldown;
