@@ -1,6 +1,6 @@
-#include "Flea.hpp"
+#include "Spider.hpp"
 
-void Flea::collideWith(GameObject* other)
+void Spider::collideWith(GameObject* other)
 {
 	Bullet* bullet = dynamic_cast<Bullet*>(other);
 	if (bullet != nullptr)
