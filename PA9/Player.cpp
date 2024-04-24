@@ -54,7 +54,8 @@ void Player::genNewPosition(const sf::RenderWindow& window)
 		this->mouseVisual.y = this->mousePosition.y;
 
 	this->movementInstructions[0] = mouseVisual;
-	//std::cout << "Mouse: (" << movementInstructions[0].x << ", " << movementInstructions[0].y << ")\n";
+	//
+	//  << "Mouse: (" << movementInstructions[0].x << ", " << movementInstructions[0].y << ")\n";
 }
 
 bool Player::shoot(void)

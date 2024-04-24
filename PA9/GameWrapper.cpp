@@ -129,7 +129,6 @@ void GameWrapper::run(void)
         if (fleaCoolDown < 0)
         {
             fleaCoolDown = 500;
-            std::cout << "Flea cooldown reached 0\n";
             this->flea->setPosition(Grid::getGridPos(rand() % 24, 1, *window));
         }
 
@@ -184,7 +183,6 @@ void GameWrapper::run(void)
         // If flea is in bounds and good random value
         if ((rand() % 100) <= 5 && this->flea->getPosition().y > 0 && this->flea->getPosition().y < Grid::getGridPos(0, 24, *window).y)
         {
-            std::cout << "Making new mushroom\n";
             objList.push_back(new Mushroom(objScale, Grid::snapToGrid(this->flea->getPosition(), *window), textureList.at("Mushroom"), 4, 1));
         }
         
