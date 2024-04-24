@@ -3,6 +3,8 @@
 #include "CentipedeBody.hpp"
 #include "Mushroom.hpp"
 #include "Spider.hpp"
+#include "CentipedeHead.hpp"
+#include "Flea.hpp"
 
 class Bullet : public GameObject
 {
@@ -14,7 +16,7 @@ public:
 		// Make all bullets centered
 		this->setOrigin((float)texture.getSize().x / 2, (float)texture.getSize().y / 2);
 	}
-	
+	enum action isDead(void) const;
 	void collideWith(GameObject* other);
 private:
 	void genNewPosition(const sf::RenderWindow& window);

@@ -3,6 +3,7 @@
 #include "Bullet.hpp"
 #include "Player.hpp"
 #include "Grid.hpp"
+#include "CentipedeHead.hpp"
 
 GameWrapper::GameWrapper(void)
 {
@@ -55,7 +56,7 @@ GameWrapper::GameWrapper(void)
             {
                 foundMatch = true;
                 cur.x = rand() % Grid::getGridDimension();
-                cur.y = rand() % (int)(Grid::getGridDimension() / 1.5);
+                cur.y = rand() % (int)(Grid::getGridDimension() / 1.25);
             }
             if (foundMatch) break;
         }
@@ -117,17 +118,32 @@ void GameWrapper::run(void)
                     objList[i]->collideWith(objList[j]);
                 }
 
-                if (objList[i]->isDead())
+                switch (objList[i]->isDead())
                 {
+                case action::DESTROY:
                     objList.erase(objList.begin() + i);
                     i--;
                     j--;
+                    break;
+                case action::CENTIPEDE_DESTROYED:
+                    objList.erase(objList.begin() + i);
+                    i--;
+                    j--;
+                    // todo later: subtract from centipede counter
+                    break;
                 }
 
-                if (objList[j]->isDead())
+                switch (objList[j]->isDead())
                 {
+                case action::DESTROY:
                     objList.erase(objList.begin() + j);
                     j--;
+                    break;
+                case action::CENTIPEDE_DESTROYED:
+                    objList.erase(objList.begin() + i);
+                    j--;
+                    // todo later: subtract from centipede counter
+                    break;
                 }
             }
         }
@@ -170,6 +186,10 @@ void GameWrapper::startRound(unsigned int round)
     }
     
     // Now we create a new centipede object
+    // Spawn a centipede right above the top of the screen, and it will go down 1 square then immediately go right
+
+    objList.push_back(new CentipedeHead(objScale, Grid::getGridPos(Grid::getGridDimension() / 2, 0, *window), \
+        textureList.at("Head"), 1, 6, DOWN, RIGHT));
 
     // set player position to center
     player->setPosition(Grid::getGridPos(12, 20, *window));

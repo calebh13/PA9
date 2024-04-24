@@ -134,7 +134,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="CentipedeBody.cpp" />
     <ClCompile Include="CentipedeHead.cpp" />
+    <ClCompile Include="CentipedePart.cpp" />
     <ClCompile Include="Flea.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameWrapper.cpp" />
@@ -146,9 +148,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.hpp" />
-    <ClInclude Include="Centipede.hpp" />
     <ClInclude Include="CentipedeBody.hpp" />
     <ClInclude Include="CentipedeHead.hpp" />
+    <ClInclude Include="CentipedePart.hpp" />
     <ClInclude Include="Flea.hpp" />
     <ClInclude Include="GameObject.hpp" />
     <ClInclude Include="GameWrapper.hpp" />
@@ -156,6 +158,9 @@
     <ClInclude Include="Mushroom.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Spider.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\CEN_1BLLT.png" />

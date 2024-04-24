@@ -10,21 +10,23 @@ public:
 	{
 		this->lives = lives;
 		this->shotCooldown = 0;
+		this->lastValidPosition = pos;
 	}
 	
 	void hit();
-	bool isDead() const;
+	enum action isDead() const;
 	bool shoot(void);
 	void reduceShotTimer(void);
 
+	void returnToValidPos(void);
+
 	void collideWith(GameObject* other);
 
-//protected: // speed not needed as player speed is constant and matches mouse speed 
-//	float getSpeedMult() const;
 private:
 	unsigned int lives;
 	unsigned int shotCooldown;
 	sf::Vector2i mousePosition;
 	sf::Vector2f mouseVisual;
+	sf::Vector2f lastValidPosition;
 	void genNewPosition(const sf::RenderWindow& window) override;
 };

@@ -54,12 +54,15 @@
     <ClCompile Include="Spider.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="CentipedeBody.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CentipedePart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Centipede.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameWrapper.hpp">
@@ -89,174 +92,180 @@
     <ClInclude Include="Player.hpp">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="CentipedePart.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\CEN_1BODY.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_1HEAD.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_1SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_2BODY.png">
+    <Text Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\CEN_2FLEA.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_2HEAD.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
+    <Image Include="assets\CEN_2PLYR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
     <Image Include="assets\CEN_2SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_3BODY.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_3HEAD.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_3SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_4BODY.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_4HEAD.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_4SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_5BODY.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_5HEAD.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_5SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_6BODY.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_6HEAD.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_6SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_7BODY.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_7HEAD.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_7SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_8BODY.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_8HEAD.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_8SHRM.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_1FLEA.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_8FLEA.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_7FLEA.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_6FLEA.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_5FLEA.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_4FLEA.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_3FLEA.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_2FLEA.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_1SPDR.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_8SPDR.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_7SPDR.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_6SPDR.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_5SPDR.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_4SPDR.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_3SPDR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_2SPDR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
-    <Image Include="assets\CEN_1BLLT.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_8BLLT.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_7BLLT.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_6BLLT.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_5BLLT.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
-    <Image Include="assets\CEN_4BLLT.png">
-      <Filter>Resource Files\assets</Filter>
-    </Image>
     <Image Include="assets\CEN_3BLLT.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
-    <Image Include="assets\CEN_2BLLT.png">
+    <Image Include="assets\CEN_3BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_3FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_3HEAD.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_3PLYR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
+    <Image Include="assets\CEN_3SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_3SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_4BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_4BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_4FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_4HEAD.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
     <Image Include="assets\CEN_4PLYR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_4SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_4SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_5BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_5BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_5FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_5HEAD.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_5PLYR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
+    <Image Include="assets\CEN_5SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_5SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_6BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_6BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_6FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_6HEAD.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
     <Image Include="assets\CEN_6PLYR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_6SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_6SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_7BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_7BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_7FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_7HEAD.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_7PLYR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
+    <Image Include="assets\CEN_7SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_7SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_8BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_8BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_8FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_8HEAD.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
     <Image Include="assets\CEN_8PLYR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_8SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_8SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_1BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_1BODY.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_1FLEA.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_1HEAD.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
     <Image Include="assets\CEN_1PLYR.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
-    <Image Include="assets\CEN_2PLYR.png">
+    <Image Include="assets\CEN_1SHRM.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_1SPDR.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_2BLLT.png">
+      <Filter>Resource Files\assets</Filter>
+    </Image>
+    <Image Include="assets\CEN_2BODY.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
   </ItemGroup>
