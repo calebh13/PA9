@@ -103,9 +103,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="assets\CEN_2FLEA.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
@@ -274,5 +271,10 @@
     <Image Include="assets\CEN_2BODY.png">
       <Filter>Resource Files\assets</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
