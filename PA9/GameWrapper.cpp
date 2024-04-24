@@ -41,6 +41,8 @@ GameWrapper::GameWrapper(void)
     soundList.insert(std::pair<std::string, AudioWrapper>("Shoot", AudioWrapper("assets/laser.wav")));
     soundList.insert(std::pair<std::string, AudioWrapper>("Split", AudioWrapper("assets/split.wav")));
     soundList.insert(std::pair<std::string, AudioWrapper>("Mush", AudioWrapper("assets/mushDeath.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("PlayerDeath", AudioWrapper("assets/playerDeath.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("SpiderDeath", AudioWrapper("assets/spiderDeath.wav")));
 
     // Create player:
     this->player = new Player(this->objScale, Grid::getGridPos(12, 20, *window), textureList.at("Player"));
