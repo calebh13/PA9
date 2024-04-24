@@ -48,6 +48,7 @@ GameWrapper::GameWrapper(void)
     // Create player:
     this->player = new Player(this->objScale, Grid::getGridPos(12, 20, *window), textureList.at("Player"));
     // centers the texture over the cursor
+
     player->setOrigin((float)textureList.at("Player").getSize().x / 2, (float)textureList.at("Player").getSize().y / 2);
     objList.push_back(player);
 
@@ -238,6 +239,10 @@ void GameWrapper::startRound(unsigned int round)
         objList.push_back(nextNode);
         cur = nextNode;
     }
+
+    // Spawn spider 
+    objList.push_back(new Spider(objScale, Grid::getGridPos(0, Grid::getGridDimension() * .85, *window), textureList.at("Spider"), 4));
+
 
     // set player position to center
     player->setPosition(Grid::getGridPos(12, 20, *window));

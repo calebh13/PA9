@@ -104,6 +104,13 @@ void Player::collideWith(GameObject* other)
 		this->hit();
 		return;
 	}
+	Spider* spider = dynamic_cast<Spider*>(other);
+	if (spider != nullptr)
+	{
+		spider->hit();
+		this->hit();
+		return;
+	}
 
 
 }

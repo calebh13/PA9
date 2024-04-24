@@ -14,4 +14,10 @@ public:
 	}
 	// hit and isDead is inherited from GameObject 
 	void collideWith(GameObject* other);
+	void genRandomDir();
+	void genNewPosition(const sf::RenderWindow& window);
+
+private:
+	float moveCoolDown = 2.0f;
+	int xDir, yDir;
 };
