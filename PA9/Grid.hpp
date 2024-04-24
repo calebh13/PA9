@@ -17,5 +17,6 @@ sf::Vector2i getGridIndices(const sf::Vector2f& pos, const float objScale);
 
 // Takes grid indices and converts it to the coordinates of the top left pixel of the corresponding cell
 sf::Vector2f getGridPos(int x, int y, const sf::RenderWindow& window);
+sf::Vector2f getGridPos(int x, int y, const float objScale);
 
 };

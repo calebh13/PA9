@@ -35,3 +35,9 @@ sf::Vector2f Grid::getGridPos(int x, int y, const sf::RenderWindow& window)
 	float cellSize = (float)window.getSize().x / GRID_DIMENSION;
 	return sf::Vector2f((float)x * cellSize, (float)y * cellSize);
 }
+
+sf::Vector2f Grid::getGridPos(int x, int y, const float objScale)
+{
+	float cellSize = (objScale * 16);
+	return sf::Vector2f((float)x * cellSize, (float)y * cellSize);
+}

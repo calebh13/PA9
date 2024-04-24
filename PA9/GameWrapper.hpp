@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.hpp"
 #include "Player.hpp"
+#include "Flea.hpp"
 #include <unordered_map>
 class GameWrapper
 {
@@ -16,6 +17,7 @@ private:
 	std::unordered_map<std::string, sf::Texture> textureList;
 	sf::RenderWindow* window;
 	Player* player;
+	Flea* flea;
 
 	void startRound(unsigned int round);
 };	

@@ -1,4 +1,5 @@
 #include "GameWrapper.hpp"
+#include "GameObject.hpp"
 #include "Mushroom.hpp"
 #include "Bullet.hpp"
 #include "Player.hpp"
@@ -43,6 +44,11 @@ GameWrapper::GameWrapper(void)
     player->setOrigin((float)textureList.at("Player").getSize().x / 2, (float)textureList.at("Player").getSize().y / 2);
     objList.push_back(player);
 
+    // Create (hidden) flea:
+    //this->flea = new Flea(objScale, Grid::getGridPos(-1, -1, *window), textureList.at("Flea"), 1, 1);
+    this->flea = new Flea(objScale, Grid::getGridPos(30, 30, *window), textureList.at("Flea"), 1, 1);
+    objList.push_back(flea);
+
     // Place initial mushrooms:
     std::vector<sf::Vector2i> used;
     for (int i = 0; i < 30; i++)
@@ -63,6 +69,7 @@ GameWrapper::GameWrapper(void)
         used.push_back(cur);
         objList.push_back(new Mushroom(objScale, sf::Vector2f(Grid::getGridPos(cur.x, cur.y, *window)), textureList.at("Mushroom"), 4));
     }
+    
 }
 
 GameWrapper::~GameWrapper()
@@ -78,6 +85,8 @@ void GameWrapper::run(void)
 {
     int counter = 0, round = 1;
     bool isRoundSetup = true;
+    int fleaCoolDown = 500;
+    
 
     while (window->isOpen())
     {
@@ -103,7 +112,16 @@ void GameWrapper::run(void)
                 objList.push_back(new Bullet(objScale, player->getPosition(), textureList.at("Bullet"), 1, 1));
             }
         }
-        
+
+        //flea stuff
+        //spawn flea        
+        fleaCoolDown--;
+        if (fleaCoolDown < 0)
+        {
+            fleaCoolDown = 500;
+            std::cout << "Flea cooldown reached 0\n";
+            this->flea->setPosition(Grid::getGridPos(rand() % 24, 1, *window));
+        }
 
         // Real game loop:
         for (int i = 0; i < objList.size(); i++)
@@ -131,6 +149,8 @@ void GameWrapper::run(void)
                     j--;
                     // todo later: subtract from centipede counter
                     break;
+                case action::NOTHING:
+                    break;
                 }
 
                 switch (objList[j]->isDead())
@@ -147,6 +167,14 @@ void GameWrapper::run(void)
                 }
             }
         }
+
+        // If flea is in bounds and good random value
+        if ((rand() % 100) <= 5 && this->flea->getPosition().y > 0 && this->flea->getPosition().y < Grid::getGridPos(0, 24, *window).y)
+        {
+            std::cout << "Making new mushroom\n";
+            objList.push_back(new Mushroom(objScale, Grid::snapToGrid(this->flea->getPosition(), *window), textureList.at("Mushroom"), 4, 1));
+        }
+
         
         //std::cout << "Player position: " << objList[0]->getPosition().x << ", " << objList[0]->getPosition().y << "\n";
 

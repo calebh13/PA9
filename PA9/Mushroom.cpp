@@ -23,6 +23,13 @@ void Mushroom::collideWith(GameObject* other)
 		b->hit();
 	}
 
+	Mushroom* mushroom = dynamic_cast<Mushroom*>(other);
+	if (mushroom != nullptr)
+	{
+		//this->hit();
+		mushroom->hit();
+	}
+
 	CentipedeHead* cen = dynamic_cast<CentipedeHead*>(other);
 	if (cen != nullptr && !cen->isMovingVertically()) // ignore centipede collisions if we're moving vertically
 	{
@@ -41,6 +48,8 @@ void Mushroom::collideWith(GameObject* other)
 	{
 		p->returnToValidPos();
 	}
+
+	
 }
 
 void Mushroom::genNewPosition(const sf::RenderWindow& window)
