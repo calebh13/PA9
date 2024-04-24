@@ -5,7 +5,7 @@
 void CentipedeHead::collideWith(GameObject* other)
 {
 	Mushroom* m = dynamic_cast<Mushroom*>(other);
-	if (m != nullptr)
+	if (m != nullptr && !isMovingVertically())
 	{
 		sf::Vector2i cen_indices = Grid::getGridIndices(this->getPosition(), this->getScale().x);
 		sf::Vector2i m_indices = Grid::getGridIndices(m->getPosition(), m->getScale().x);
@@ -74,6 +74,11 @@ void CentipedeHead::bonkMushroom(dir mushroomDir)
 	}
 }
 
+bool CentipedeHead::isMovingVertically(void) const
+{
+	return movingVertically;
+}
+
 void CentipedeHead::genNewPosition(const sf::RenderWindow& window)
 {
 	sf::Vector2f pos = this->getPosition();
@@ -102,6 +107,7 @@ void CentipedeHead::genNewPosition(const sf::RenderWindow& window)
 			else
 			{
 				foundValidChoice = true;
+				movingVertically = true;
 				//std::cout << "Moving up\n";
 				glideTo(pos.x, Grid::getGridPos(indices.x, indices.y - 1, window).y);
 				curDir = horizDir; // can only move down once
@@ -116,6 +122,7 @@ void CentipedeHead::genNewPosition(const sf::RenderWindow& window)
 			else
 			{
 				foundValidChoice = true;
+				movingVertically = false;
 				//std::cout << "Moving right\n";
 				glideTo(Grid::getGridPos(indices.x + 1, indices.y, window).x, pos.y);
 			}
@@ -130,6 +137,7 @@ void CentipedeHead::genNewPosition(const sf::RenderWindow& window)
 			else
 			{
 				foundValidChoice = true;
+				movingVertically = true;
 				//std::cout << "Moving down\n";
 				glideTo(pos.x, Grid::getGridPos(indices.x, indices.y + 1, window).y);
 				curDir = horizDir; // can only move down once
@@ -144,6 +152,7 @@ void CentipedeHead::genNewPosition(const sf::RenderWindow& window)
 			else
 			{
 				foundValidChoice = true;
+				movingVertically = false;
 				//std::cout << "Moving left\n";
 				glideTo(Grid::getGridPos(indices.x - 1, indices.y, window).x, pos.y);
 			}

@@ -14,12 +14,13 @@ public:
 	{
 		this->horizDir = horizDir;
 		this->vertGoalDir = vertGoalDir;
-		this->movingHorizontal = (curDir == RIGHT || curDir == LEFT);
 		forbiddenDir = NONE;
 	}
 	void collideWith(GameObject* other);
 	enum action isDead(void) const;
 	void bonkMushroom(dir mushroomDir);
+	bool isMovingVertically(void) const;
+
 private:
 	void genNewPosition(const sf::RenderWindow& window);
 	void incrementDir(dir& d);
@@ -27,5 +28,5 @@ private:
 	dir horizDir; // whether we're going to the left across this row or right - swaps every time we go down
 	dir vertGoalDir; // determines whether we're going up or down the screen
 	dir forbiddenDir;
-	bool movingHorizontal;
+	bool movingVertically;
 };

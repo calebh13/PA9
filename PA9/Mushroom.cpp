@@ -24,7 +24,7 @@ void Mushroom::collideWith(GameObject* other)
 	}
 
 	CentipedeHead* cen = dynamic_cast<CentipedeHead*>(other);
-	if (cen != nullptr)
+	if (cen != nullptr && !cen->isMovingVertically()) // ignore centipede collisions if we're moving vertically
 	{
 		sf::Vector2i cen_indices = Grid::getGridIndices(cen->getPosition(), cen->getScale().x);
 		sf::Vector2i m_indices = Grid::getGridIndices(this->getPosition(), this->getScale().x);
