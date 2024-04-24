@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.hpp"
 #include "Player.hpp"
+#include "AudioWrapper.hpp"
 #include <unordered_map>
 class GameWrapper
 {
@@ -14,8 +15,10 @@ private:
 	float objScale;
 	// prevents textures from going out of scope, accessed using the name of the GameObject (hash table)
 	std::unordered_map<std::string, sf::Texture> textureList;
+	std::unordered_map<std::string, AudioWrapper> soundList;
 	sf::RenderWindow* window;
 	Player* player;
+	unsigned int centipedeCounter;
 
 	void startRound(unsigned int round);
 };	

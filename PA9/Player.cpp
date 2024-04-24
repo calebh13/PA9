@@ -14,9 +14,9 @@ enum action Player::isDead() const
 	{
 		return static_cast<action>(RESPAWN);
 	}
-	else
+	else if(lives == 0)
 	{
-		return static_cast<action>(NOTHING);
+		return static_cast<action>(GAME_OVER);
 	}
 }
 
@@ -61,7 +61,7 @@ bool Player::shoot(void)
 {
 	if (shotCooldown == 0)
 	{
-		shotCooldown = 12;
+		shotCooldown = 10;
 		return true;
 	}
 	else return false;

@@ -63,13 +63,10 @@ void CentipedeHead::bonkMushroom(dir mushroomDir)
 	reverseDir(horizDir);
 	if (mushroomDir == DOWN || mushroomDir == UP)
 	{
-		std::cout << "Changing to horiz dir. Mushroom dir: " << mushroomDir << "\n";
-		forbiddenDir = mushroomDir;
 		curDir = horizDir;
 	}
 	else
 	{
-		std::cout << "Changing to vertGoalDir. Mushroom dir: " << mushroomDir << "\n";
 		curDir = vertGoalDir;
 	}
 }
@@ -83,18 +80,13 @@ void CentipedeHead::genNewPosition(const sf::RenderWindow& window)
 {
 	sf::Vector2f pos = this->getPosition();
 	//maybe snap to grid? like so:
-	this->lastWaypoint = Grid::snapToGrid(pos, window);
+	this->lastWaypoint = pos;
 
 	sf::Vector2i indices = Grid::getGridIndices(pos, window);
 
 	bool foundValidChoice = false;
 	while (!foundValidChoice)
 	{
-		// NON DETERMINISTIC MOVEMENT: EEK!
-		/*if (curDir == forbiddenDir)
-		{
-			curDir = static_cast<dir>(rand() % 4);
-		}*/
 		switch (curDir)
 		{
 		case dir::UP:
@@ -158,9 +150,7 @@ void CentipedeHead::genNewPosition(const sf::RenderWindow& window)
 			}
 			break;
 		}
-	}
-	forbiddenDir = NONE;
-	
+	}	
 }
 
 void CentipedeHead::incrementDir(dir& d)

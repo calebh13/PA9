@@ -14,8 +14,9 @@ public:
 	{
 		this->horizDir = horizDir;
 		this->vertGoalDir = vertGoalDir;
-		forbiddenDir = NONE;
+		movingVertically = (curDir == UP || curDir == DOWN);
 	}
+
 	void collideWith(GameObject* other);
 	enum action isDead(void) const;
 	void bonkMushroom(dir mushroomDir);
@@ -27,6 +28,5 @@ private:
 	void reverseDir(dir& d);
 	dir horizDir; // whether we're going to the left across this row or right - swaps every time we go down
 	dir vertGoalDir; // determines whether we're going up or down the screen
-	dir forbiddenDir;
 	bool movingVertically;
 };

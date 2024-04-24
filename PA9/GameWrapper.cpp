@@ -36,6 +36,13 @@ GameWrapper::GameWrapper(void)
     textureList.at("Player").loadFromFile("assets/CEN_1PLYR.png");
     textureList.at("Mushroom").loadFromFile("assets/CEN_1SHRM.png");
     textureList.at("Spider").loadFromFile("assets/CEN_1SPDR.png");
+   
+
+    soundList.insert(std::pair<std::string, AudioWrapper>("Shoot", AudioWrapper("assets/laser.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("Split", AudioWrapper("assets/split.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("Mush", AudioWrapper("assets/mushDeath.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("PlayerDeath", AudioWrapper("assets/playerDeath.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("SpiderDeath", AudioWrapper("assets/spiderDeath.wav")));
 
     // Create player:
     this->player = new Player(this->objScale, Grid::getGridPos(12, 20, *window), textureList.at("Player"));
@@ -64,6 +71,8 @@ GameWrapper::GameWrapper(void)
         used.push_back(cur);
         objList.push_back(new Mushroom(objScale, sf::Vector2f(Grid::getGridPos(cur.x, cur.y, *window)), textureList.at("Mushroom"), 4));
     }
+
+    centipedeCounter = 0;
 }
 
 GameWrapper::~GameWrapper()
@@ -101,6 +110,7 @@ void GameWrapper::run(void)
             if (player->shoot())
             {
                 // Create a new bullet and add it to list of GameObjects
+                soundList.at("Shoot").play();
                 objList.push_back(new Bullet(objScale, player->getPosition(), textureList.at("Bullet"), 1, 1));
             }
         }
@@ -128,10 +138,14 @@ void GameWrapper::run(void)
                     break;
                 case action::CENTIPEDE_DESTROYED:
                     objList.erase(objList.begin() + i);
+                    soundList.at("Split").play();
                     i--;
                     j--;
                     // todo later: subtract from centipede counter
                     break;
+                case action::CENTIPEDE_HEAD_MOVE:
+                    // This means that objList[i] is guaranteed to be a CentipedeHead*
+                    objList.erase(objList.begin() + i);
                 }
 
                 switch (objList[j]->isDead())
@@ -142,6 +156,7 @@ void GameWrapper::run(void)
                     break;
                 case action::CENTIPEDE_DESTROYED:
                     objList.erase(objList.begin() + i);
+                    soundList.at("Split").play();
                     j--;
                     // todo later: subtract from centipede counter
                     break;
@@ -149,8 +164,6 @@ void GameWrapper::run(void)
             }
         }
         
-        //std::cout << "Player position: " << objList[0]->getPosition().x << ", " << objList[0]->getPosition().y << "\n";
-
         window->clear();
 
         // Draw loop: 
@@ -189,8 +202,19 @@ void GameWrapper::startRound(unsigned int round)
     // Now we create a new centipede object
     // Spawn a centipede right above the top of the screen, and it will go down 1 square then immediately go right
 
-    objList.push_back(new CentipedeHead(objScale, Grid::getGridPos(Grid::getGridDimension() / 2, 0, *window), \
-        textureList.at("Head"), 1, 6, DOWN, RIGHT));
+    CentipedeHead* head = new CentipedeHead(objScale, Grid::getGridPos(Grid::getGridDimension() / 2, 0, *window), \
+        textureList.at("Head"), 1, 6, DOWN, RIGHT);
+    centipedeCounter++;
+    CentipedePart* cur = head;
+    objList.push_back(head);
+
+    for (int i = 1; i <= 12; i++)
+    {
+        CentipedeBody* nextNode = new CentipedeBody(objScale, Grid::getGridPos(Grid::getGridDimension() / 2, -i, *window),
+            textureList.at("Body"), 1, 6, DOWN, cur);
+        objList.push_back(nextNode);
+        cur = nextNode;
+    }
 
     // Spawn spider 
     objList.push_back(new Spider(objScale, Grid::getGridPos(0, Grid::getGridDimension() * .85, *window), textureList.at("Spider"), 4));
