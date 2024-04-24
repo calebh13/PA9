@@ -24,7 +24,6 @@ public:
 		this->validPositions[0] = pos;
 		this->nodeBehind = nullptr;
 	}
-	virtual ~CentipedePart() = 0;
 
 	virtual void collideWith(GameObject* other) = 0;
 	void setNodeBehind(CentipedePart* behind);
