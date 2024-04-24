@@ -11,6 +11,6 @@ Use the mouse to move your player around. Press or hold spacebar to shoot.\
 The goal of the game is to shoot the centipede and survive for as many rounds as possible.\
 \
 # IMPORTANT: Build Requirements
-You must define the environment variable %SFML\_DIR% to your SFML directory (the one with bin, lib, etc.)\
-To do so, open a command prompt as admin and run the command: `setx SFML_DIR <C:/.../sfml/>`\
-Then simply git clone the repo and build the project using Visual Studio.
+You must set the environment variable %SFML\_DIR% to your SFML directory (the one with bin, lib, etc.)\
+To do so, open a command prompt as admin and run this command: `setx SFML_DIR <C:/.../sfml>`\
+Then simply build the project using Visual Studio.
