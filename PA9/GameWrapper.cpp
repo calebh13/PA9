@@ -36,6 +36,11 @@ GameWrapper::GameWrapper(void)
     textureList.at("Player").loadFromFile("assets/CEN_1PLYR.png");
     textureList.at("Mushroom").loadFromFile("assets/CEN_1SHRM.png");
     textureList.at("Spider").loadFromFile("assets/CEN_1SPDR.png");
+   
+
+    soundList.insert(std::pair<std::string, AudioWrapper>("Shoot", AudioWrapper("assets/laser.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("Split", AudioWrapper("assets/split.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("Mush", AudioWrapper("assets/mushDeath.wav")));
 
     // Create player:
     this->player = new Player(this->objScale, Grid::getGridPos(12, 20, *window), textureList.at("Player"));
@@ -100,6 +105,7 @@ void GameWrapper::run(void)
             if (player->shoot())
             {
                 // Create a new bullet and add it to list of GameObjects
+                soundList.at("Shoot").play();
                 objList.push_back(new Bullet(objScale, player->getPosition(), textureList.at("Bullet"), 1, 1));
             }
         }
@@ -127,6 +133,7 @@ void GameWrapper::run(void)
                     break;
                 case action::CENTIPEDE_DESTROYED:
                     objList.erase(objList.begin() + i);
+                    soundList.at("Split").play();
                     i--;
                     j--;
                     // todo later: subtract from centipede counter
@@ -141,6 +148,7 @@ void GameWrapper::run(void)
                     break;
                 case action::CENTIPEDE_DESTROYED:
                     objList.erase(objList.begin() + i);
+                    soundList.at("Split").play();
                     j--;
                     // todo later: subtract from centipede counter
                     break;
