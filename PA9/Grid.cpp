@@ -15,6 +15,12 @@ sf::Vector2f Grid::snapToGrid(const sf::Vector2f& pos, const sf::RenderWindow& w
 	return sf::Vector2f(pos.x - fmodf(pos.x, cellSize), pos.y - fmodf(pos.y, cellSize));
 }
 
+sf::Vector2f Grid::snapToGrid(const sf::Vector2f& pos, const float objScale)
+{
+	float cellSize = objScale * 16;
+	return sf::Vector2f(pos.x - fmodf(pos.x, cellSize), pos.y - fmodf(pos.y, cellSize));
+}
+
 sf::Vector2i Grid::getGridIndices(const sf::Vector2f& pos, const sf::RenderWindow& window)
 {
 	float cellSize = (float)window.getSize().x / GRID_DIMENSION;

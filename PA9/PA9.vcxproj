@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AudioWrapper.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CentipedeBody.cpp" />
     <ClCompile Include="CentipedeHead.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="Spider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioWrapper.hpp" />
     <ClInclude Include="Bullet.hpp" />
     <ClInclude Include="CentipedeBody.hpp" />
     <ClInclude Include="CentipedeHead.hpp" />

@@ -1,5 +1,8 @@
 #pragma once
 #include "GameObject.hpp"
+#include <Windows.h>
+
+#define PLAYER_SPEED 20
 
 class Player : public GameObject
 {

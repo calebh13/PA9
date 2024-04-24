@@ -1,6 +1,5 @@
 #pragma once
 #include "GameObject.hpp"
-#include <stack>
 
 /*
 Todo: add an "is paused" bool to make the centipede pause for a frame after hitting a mushroom.
@@ -37,4 +36,5 @@ protected:
 	sf::Vector2f validPositions[2];
 	CentipedePart* nodeBehind;
 	virtual void genNewPosition(const sf::RenderWindow& window) = 0;
+	void forceRegeneration(void);
 };
