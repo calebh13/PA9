@@ -68,6 +68,8 @@ GameWrapper::GameWrapper(void)
         used.push_back(cur);
         objList.push_back(new Mushroom(objScale, sf::Vector2f(Grid::getGridPos(cur.x, cur.y, *window)), textureList.at("Mushroom"), 4));
     }
+
+    centipedeCounter = 0;
 }
 
 GameWrapper::~GameWrapper()
@@ -138,6 +140,9 @@ void GameWrapper::run(void)
                     j--;
                     // todo later: subtract from centipede counter
                     break;
+                case action::CENTIPEDE_HEAD_MOVE:
+                    // This means that objList[i] is guaranteed to be a CentipedeHead*
+                    objList.erase(objList.begin() + i);
                 }
 
                 switch (objList[j]->isDead())
@@ -156,8 +161,6 @@ void GameWrapper::run(void)
             }
         }
         
-        //std::cout << "Player position: " << objList[0]->getPosition().x << ", " << objList[0]->getPosition().y << "\n";
-
         window->clear();
 
         // Draw loop: 
@@ -198,6 +201,7 @@ void GameWrapper::startRound(unsigned int round)
 
     CentipedeHead* head = new CentipedeHead(objScale, Grid::getGridPos(Grid::getGridDimension() / 2, 0, *window), \
         textureList.at("Head"), 1, 6, DOWN, RIGHT);
+    centipedeCounter++;
     CentipedePart* cur = head;
     objList.push_back(head);
 

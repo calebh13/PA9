@@ -14,9 +14,9 @@ enum action Player::isDead() const
 	{
 		return static_cast<action>(RESPAWN);
 	}
-	else
+	else if(lives == 0)
 	{
-		return static_cast<action>(NOTHING);
+		return static_cast<action>(GAME_OVER);
 	}
 }
 

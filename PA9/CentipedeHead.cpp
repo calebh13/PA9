@@ -2,6 +2,11 @@
 #include "Bullet.hpp"
 #include "Player.hpp"
 
+CentipedeHead::~CentipedeHead()
+{
+
+}
+
 void CentipedeHead::collideWith(GameObject* other)
 {
 	Mushroom* m = dynamic_cast<Mushroom*>(other);

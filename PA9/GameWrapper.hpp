@@ -18,6 +18,7 @@ private:
 	std::unordered_map<std::string, AudioWrapper> soundList;
 	sf::RenderWindow* window;
 	Player* player;
+	unsigned int centipedeCounter;
 
 	void startRound(unsigned int round);
 };	

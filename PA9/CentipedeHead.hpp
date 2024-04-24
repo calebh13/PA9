@@ -16,6 +16,8 @@ public:
 		this->vertGoalDir = vertGoalDir;
 		movingVertically = (curDir == UP || curDir == DOWN);
 	}
+	~CentipedeHead();
+
 	void collideWith(GameObject* other);
 	enum action isDead(void) const;
 	void bonkMushroom(dir mushroomDir);
