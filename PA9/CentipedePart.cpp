@@ -18,9 +18,18 @@ sf::Vector2f CentipedePart::getLastWaypoint(void) const
 void CentipedePart::pause(void)
 {
     this->setPosition(lastWaypoint);
-    std::cout << "moveFrame subtracted: " << moveFrame << "\n";
+    //--moveFrame;
     if (this->nodeBehind != nullptr)
     {
-        nodeBehind->pause();
+        this->nodeBehind->forceRegeneration();
+    }
+}
+
+void CentipedePart::forceRegeneration(void)
+{
+    this->moveFrame = this->interpolationFrames;
+    if (this->nodeBehind != nullptr)
+    {
+        this->nodeBehind->forceRegeneration();
     }
 }

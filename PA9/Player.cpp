@@ -61,7 +61,7 @@ bool Player::shoot(void)
 {
 	if (shotCooldown == 0)
 	{
-		shotCooldown = 12;
+		shotCooldown = 10;
 		return true;
 	}
 	else return false;

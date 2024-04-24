@@ -42,5 +42,6 @@ action CentipedeBody::isDead(void) const
 
 void CentipedeBody::genNewPosition(const sf::RenderWindow& window)
 {
+	this->lastWaypoint = this->getPosition();
 	glideTo(nodeInFront->getLastWaypoint().x, nodeInFront->getLastWaypoint().y);
 }
