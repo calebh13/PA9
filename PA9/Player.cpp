@@ -160,7 +160,6 @@ void Player::collideWith(GameObject* other)
 	if (m != nullptr)
 	{
 		this->returnToValidPos();
-		std::cout << "Happening";
 		return;
 	}
 
