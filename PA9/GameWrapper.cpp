@@ -182,6 +182,8 @@ void GameWrapper::run(void)
             }
         }
 
+
+
         //flea stuff
         //spawn flea        
         fleaCoolDown--;
@@ -379,6 +381,8 @@ void GameWrapper::startRound(unsigned int round)
     textureList.at("Player").loadFromFile(base + "PLYR.png");
     textureList.at("Mushroom").loadFromFile(base + "SHRM.png");
     textureList.at("Spider").loadFromFile(base + "SPDR.png");
+
+    
 
     // Heal mushrooms (does nothing for all other objects)
     for (int i = 1; i < objList.size(); i++)

@@ -11,6 +11,7 @@ int main()
     test.testRoundSetup();
     test.testSound();
     test.testGrid();
+    test.testTextures();
     /**/
     
     GameWrapper game;

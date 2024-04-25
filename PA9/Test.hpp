@@ -13,6 +13,9 @@ public:
 	//test grid functions
 	void testGrid();
 
+	friend class GameWrapper;
 
+public:
+	void testTextures(void);
 };
 

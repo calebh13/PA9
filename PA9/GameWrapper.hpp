@@ -12,6 +12,7 @@
 #include "Player.hpp"
 #include "AudioWrapper.hpp"
 #include "Flea.hpp"
+#include "Test.hpp"
 #include <unordered_map>
 #include "Test.hpp"
 
@@ -24,6 +25,7 @@ public:
 	GameWrapper(void);
 	~GameWrapper();
 	void run(void);
+
 private:
 	// IMPORTANT NOTE: player will always be at index 0 of objList.
 	std::vector<GameObject*> objList; // polymorphism!
@@ -36,7 +38,7 @@ private:
 	Flea* flea;
 	unsigned int centipedeCounter;
 
-	//Helper function to construtor
+	//Helper functions for constructor
 	void loadAssets();
 	void placeMushrooms();
 	void placeInitEntities();
