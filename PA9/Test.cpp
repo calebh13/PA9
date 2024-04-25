@@ -1,7 +1,7 @@
 #include "Test.hpp"
 
 /*
-* Function: collideWith()
+* Function: testRoundSetup()
 * Description: Test if the pointers in the Game Wrapper are initialized.
 * Input parameters: None
 * Returns: None
@@ -140,6 +140,12 @@ void Test::testTextures(void)
     }
 }
 
+/************************************************************
+* Function: testObjMovement()                               *
+* Description: Tests gliding capatilies with each object    *
+* Input parameters: void                                    *
+* Returns: None                                             *
+*************************************************************/
 void Test::testObjMovement(void)
 {
     GameWrapper* obj = new GameWrapper;
