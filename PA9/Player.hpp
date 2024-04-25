@@ -1,9 +1,22 @@
+/*
+	Caleb, Lucas, Jace
+
+	Description: This is the header file for the Player Class
+
+   History: 4/17/24 - Class was created initially by Lucas with rudamentary movement
+			4/19/24 - Movement refactored and shots added by Jace
+			4/20/24 - Collision added by Caleb
+
+*/
+
 #pragma once
 #include "GameObject.hpp"
 #include <Windows.h>
 
+//Speed of the plaer
 #define PLAYER_SPEED 20
 
+//Players inherit GameObject
 class Player : public GameObject
 {
 public:
@@ -11,21 +24,24 @@ public:
 		const sf::Texture& texture = sf::Texture(), unsigned int health = 1, unsigned int speed = 1, unsigned int lives = 5) 
 		: GameObject(scale, pos, texture, health, speed)
 	{
+		//Lives, cooldown, and initial position is set
 		this->lives = lives;
 		this->shotCooldown = 0;
 		this->lastValidPosition = pos;
 	}
 	
+	//Functions inherited by GameObject
 	void hit();
 	enum action isDead() const;
+	void returnToValidPos(void);
+	void collideWith(GameObject* other);
+
+	//Functions around shooting
 	bool shoot(void);
 	void reduceShotTimer(void);
 
-	void returnToValidPos(void);
-
-	void collideWith(GameObject* other);
-
 private:
+	//Private variables around movement and shooting
 	unsigned int lives;
 	unsigned int shotCooldown;
 	sf::Vector2i mousePosition;

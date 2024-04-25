@@ -1,3 +1,14 @@
+/*
+	Caleb
+	4/23/24
+
+	Description: This is a header file that defines the Grid class. It is the positioning
+					system for the game
+
+// History: 4/22/24 - Class was created and implimented initially by Caleb
+
+
+*/
 #pragma once
 #include "SFML/Graphics.hpp"
 
