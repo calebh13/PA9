@@ -100,22 +100,11 @@ void Test::testGrid()
     {
 		std::cout << "Grid functions do not work correctly. Test failed.\n";
 	}
-    }
-
-
 }
 
 void Test::testTextures(void)
 {
 	GameWrapper* obj = new GameWrapper;
-
-	//obj->textureList.at("Bullet");
-	//obj->textureList.at("Body");
-	//obj->textureList.at("Flea");
-	//obj->textureList.at("Head");
-	//obj->textureList.at("Player");
-	//obj->textureList.at("Mushroom");
-	//obj->textureList.at("Spider");
 
 	// everything will be of type spider as it is just the textures we are testing 
 	Spider* spider = new Spider(obj->objScale, Grid::getGridPos(Grid::getGridDimension() * .30, Grid::getGridDimension() * .50, *obj->window), obj->textureList.at("Spider"), 4);
@@ -140,6 +129,4 @@ void Test::testTextures(void)
 		obj->window->draw(*flea);
 		obj->window->display();
 	}
-
-
 }
