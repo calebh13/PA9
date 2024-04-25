@@ -1,5 +1,4 @@
-#include "test.hpp"
-
+#include "Test.hpp"
 
 /*
 * Function: collideWith()
@@ -12,13 +11,30 @@
 void Test::testRoundSetup()
 {
 	GameWrapper* pGameWrapper = new GameWrapper;
-	if (pGameWrapper->GameWrapperTest())
+	// Test dynamically allocated objects
+	if (pGameWrapper->window != nullptr && pGameWrapper->player != nullptr && pGameWrapper->flea != nullptr)
 	{
-		std::cout << "GameWrapper pointers initialized!\n";
+		bool isNullptr = false;
+		for (int i = 0; i < pGameWrapper->objList.size(); i++)
+		{
+			if (pGameWrapper->objList[i] == nullptr)
+			{
+				isNullptr = true;
+				break;
+			}
+		}
+		if (isNullptr == false)
+		{
+			std::cout << "GameWrapper pointers initialized! Test passed.\n";
+		}
+		else
+		{
+			std::cout << "Nullptr detected in objList. Test failed.\n";
+		}
 	}
 	else
 	{
-		std::cout << "GameWrapper pointers are not initialized.\n";
+		std::cout << "GameWrapper pointers are not initialized. Test failed.\n";
 	}
 	delete pGameWrapper;
 }
@@ -36,23 +52,23 @@ void Test::testSound()
 	GameWrapper* pGameWrapper = new GameWrapper;
 	system("pause");
 	pGameWrapper->soundList.at("Shoot").play();
-	std::cout << "did you hear the shoot sound?\n";
+	std::cout << "Did you hear the shoot sound?\n";
 	system("pause");
 
 	pGameWrapper->soundList.at("Split").play();
-	std::cout << "did you hear the Split sound?\n";
+	std::cout << "Did you hear the Split sound?\n";
 	system("pause");
 
 	pGameWrapper->soundList.at("Mush").play();
-	std::cout << "did you hear the Mush sound?\n";
+	std::cout << "Did you hear the Mush sound?\n";
 	system("pause");
 
 	pGameWrapper->soundList.at("PlayerDeath").play();
-	std::cout << "did you hear the PlayerDeath sound?\n";
+	std::cout << "Did you hear the PlayerDeath sound?\n";
 	system("pause");
 
 	pGameWrapper->soundList.at("SpiderDeath").play();
-	std::cout << "did you hear the SpiderDeath sound?\n";
+	std::cout << "Did you hear the SpiderDeath sound?\n";
 	system("pause");
 	delete pGameWrapper;
 }
@@ -78,11 +94,11 @@ void Test::testGrid()
 	sf::Vector2i newIndices = Grid::getGridIndices(indicesPos, *(pGameWrapper->window));
 	if (newIndices.x == newTestIndices.x && newIndices.y == newTestIndices.y && newIndices.x == 12 && newIndices.y == 15)
 	{
-		std::cout << "All the grid functions work!\n";
+		std::cout << "Grid functions work correctly. Test passed.\n";
 	}
 	else
 	{
-		std::cout << "Not all the grid functions work!\n";
+		std::cout << "Grid functions do not work correctly. Test failed.\n";
 	}
 }
 

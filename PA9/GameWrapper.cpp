@@ -131,6 +131,7 @@ void GameWrapper::run(void)
         for (int i = 0; i < objList.size(); i++)
         {
             objList[i]->update(*window); // movement
+            int eraseIndexI = 0, eraseIndexJ = 0;
             
             // Collision loop:
             for (int j = i + 1; j < objList.size(); j++)
@@ -167,25 +168,31 @@ void GameWrapper::run(void)
                     // Important: set node behind next node to nullptr, since we'll be deleting this guy
                     lastBodyNode->getFrontNode()->setNodeBehind(nullptr);
                     GameObject* toErase = dynamic_cast<GameObject*>(lastBodyNode);
-                    int eraseIndex = 0;
-                    for (; eraseIndex < objList.size(); eraseIndex++)
+                    for (eraseIndexI = 0; eraseIndexI < objList.size(); eraseIndexI++)
                     {
-                        if (objList[eraseIndex] == toErase)
+                        if (objList[eraseIndexI] == toErase)
                         {
                             break;
                         }
                     }
                     objList.push_back(new Mushroom(objScale, Grid::snapToGrid(lastBodyNode->getPosition(), objScale), textureList.at("Mushroom"), 4));
-                    objList.erase(objList.begin() + eraseIndex);
-                    if (eraseIndex <= i)
+                    objList.erase(objList.begin() + eraseIndexI);
+                    if (eraseIndexI <= i)
                     {
                         i--;
                     }
-                    if (eraseIndex <= j)
+                    if (eraseIndexI <= j)
                     {
                         j--;
                     }
                     shotPart->heal();
+                    break;
+                case action::RESPAWN:
+                    player->setPosition(Grid::getGridPos(12, 20, *window));
+                    soundList.at("PlayerDeath").play();
+                    break;
+                case action::GAME_OVER:
+                    return;
                     break;
                 }
 
@@ -214,25 +221,31 @@ void GameWrapper::run(void)
                     // Important: set node behind next node to nullptr, since we'll be deleting this guy
                     lastBodyNode->getFrontNode()->setNodeBehind(nullptr);
                     GameObject* toErase = dynamic_cast<GameObject*>(lastBodyNode);
-                    int eraseIndex = 0;
-                    for (; eraseIndex < objList.size(); eraseIndex++)
+                    for (eraseIndexJ = 0; eraseIndexJ < objList.size(); eraseIndexJ++)
                     {
-                        if (objList[eraseIndex] == toErase)
+                        if (objList[eraseIndexJ] == toErase)
                         {
                             break;
                         }
                     }
                     objList.push_back(new Mushroom(objScale, Grid::snapToGrid(lastBodyNode->getPosition(), objScale), textureList.at("Mushroom"), 4));
-                    objList.erase(objList.begin() + eraseIndex);
-                    if (eraseIndex <= i)
+                    objList.erase(objList.begin() + eraseIndexJ);
+                    if (eraseIndexJ <= i)
                     {
                         i--;
                     }
-                    if (eraseIndex <= j)
+                    if (eraseIndexJ <= j)
                     {
                         j--;
                     }
                     shotPart->heal();
+                    break;
+                case action::RESPAWN:
+                    player->setPosition(Grid::getGridPos(12, 20, *window));
+                    soundList.at("PlayerDeath").play();
+                    break;
+                case action::GAME_OVER:
+                    return;
                     break;
                 }
             }

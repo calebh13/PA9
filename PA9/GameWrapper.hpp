@@ -14,7 +14,8 @@ class GameWrapper
 public:
 	GameWrapper(void);
 	~GameWrapper();
-	void run(void);private:
+	void run(void);
+private:
 	// IMPORTANT NOTE: player will always be at index 0 of objList.
 	std::vector<GameObject*> objList; // polymorphism!
 	float objScale;
@@ -24,7 +25,6 @@ public:
 	sf::RenderWindow* window;
 	Player* player;
 	Flea* flea;
-
 	unsigned int centipedeCounter;
 
 	void startRound(unsigned int round);

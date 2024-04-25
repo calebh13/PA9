@@ -12,11 +12,14 @@ enum action Player::isDead() const
 {
 	if (health == 0)
 	{
-		return static_cast<action>(RESPAWN);
-	}
-	else if(lives == 0)
-	{
-		return static_cast<action>(GAME_OVER);
+		if (lives == 0)
+		{
+			return static_cast<action>(GAME_OVER);
+		}
+		else
+		{
+			return static_cast<action>(RESPAWN);
+		}
 	}
 }
 
