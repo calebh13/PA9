@@ -5,7 +5,6 @@
 #include "Player.hpp"
 #include "Grid.hpp"
 #include "CentipedeHead.hpp"
-#include <algorithm>
 
 GameWrapper::GameWrapper(void)
 {

@@ -4,16 +4,17 @@
 #include "AudioWrapper.hpp"
 #include "Flea.hpp"
 #include <unordered_map>
+#include "Test.hpp"
 
 constexpr unsigned int CENTIPEDE_SPEED = 6;
 
 class GameWrapper
 {
+	friend class Test;
 public:
 	GameWrapper(void);
 	~GameWrapper();
-	void run(void);
-private:
+	void run(void);private:
 	// IMPORTANT NOTE: player will always be at index 0 of objList.
 	std::vector<GameObject*> objList; // polymorphism!
 	float objScale;

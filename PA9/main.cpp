@@ -1,11 +1,15 @@
 #include "GameWrapper.hpp"
+#include "test.hpp"
 
 int main()
 {
     srand((unsigned int)time(0));
 
-    GameWrapper game;
-    game.run();
+    Test test;
+    test.testGrid();
+
+    //GameWrapper game;
+    //game.run();
 
     return 0;
 }
