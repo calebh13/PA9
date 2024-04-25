@@ -41,8 +41,28 @@ GameWrapper::GameWrapper(void)
 
     //Self-evident
     loadAssets();
-    placeMushrooms();
     placeInitEntities();
+
+    //Placing Mushrooms
+    std::vector<sf::Vector2i> used;
+    for (int i = 0; i < 30; i++)
+    {
+        sf::Vector2i cur = sf::Vector2i(rand() % Grid::getGridDimension(), rand() % (int)(Grid::getGridDimension() / 1.25));
+        // Ensure cur has not already been used and that it is not the player's position
+        for (int i = 0; i < used.size(); i++)
+        {
+            bool foundMatch = false;
+            while ((used[i].x == cur.x && used[i].y == cur.y) || (cur.x == 12 && cur.y == 20))
+            {
+                foundMatch = true;
+                cur.x = rand() % Grid::getGridDimension();
+                cur.y = rand() % (int)(Grid::getGridDimension() / 1.25);
+            }
+            if (foundMatch) break;
+        }
+        used.push_back(cur);
+        objList.push_back(new Mushroom(objScale, sf::Vector2f(Grid::getGridPos(cur.x, cur.y, *window)), textureList.at("Mushroom"), 4));
+    }
 
 }
 
