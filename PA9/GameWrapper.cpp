@@ -285,14 +285,17 @@ void GameWrapper::run(void)
                 
                 case action::RESPAWN:
                 {
-                    player->setPosition(Grid::getGridPos(12, 20, *window));
+                    std::cout << "Respawning\n";
+                    player->setPosition(Grid::getGridPos(30, 30, *window));
+                    player->heal();
+                    player->setRespawnCooldown(60);
                     soundList.at("PlayerDeath").play();
                     break;
                 }
 
                 case action::GAME_OVER:
                 {
-                    return;
+                    this->window->close();
                     break;
                 }
                 }
@@ -351,13 +354,16 @@ void GameWrapper::run(void)
                 }
                 case action::RESPAWN:
                 {
-                    player->setPosition(Grid::getGridPos(12, 20, *window));
+                    std::cout << "Respawning\n";
+                    player->setPosition(Grid::getGridPos(30, 30, *window));
+                    player->setRespawnCooldown(60);
+                    player->heal();
                     soundList.at("PlayerDeath").play();
                     break;
                 }
                 case action::GAME_OVER:
                 {
-                    return;
+                    this->window->close();
                     break;
                 }
                 }
@@ -383,6 +389,7 @@ void GameWrapper::run(void)
         window->display();
         counter++;
         player->reduceShotTimer();
+        player->reduceRespawnCooldown();
         if (centipedeCounter <= 0)
         {
             round++;

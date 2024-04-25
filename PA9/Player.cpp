@@ -22,7 +22,11 @@
 *************************************************************/
 void Player::hit()
 {
-	health -= 1;
+	if (respawnCooldown == 0)
+	{
+		health = 0;
+		lives -= 1;
+	}
 }
 
 /*************************************************************
@@ -48,6 +52,10 @@ enum action Player::isDead() const
 			return static_cast<action>(RESPAWN);
 		}
 	}
+	else
+	{
+		return static_cast<action>(NOTHING);
+	}
 }
 
 /*************************************************************
@@ -60,38 +68,46 @@ enum action Player::isDead() const
 *************************************************************/
 void Player::genNewPosition(const sf::RenderWindow& window)
 {
-	// Store lastvalidpos *before* making any changes
-	this->lastValidPosition = this->getPosition();
-
-	// size is exactly equal to localBounds.width because origin of local bounds is (0,0)
-	// and remember player is square	
-	float playerSize = this->getLocalBounds().width * this->getScale().x;
-	// however, player is not centered
-	float xMax = window.getSize().x - (0.5 * playerSize);
-	float xMin = 0 + (0.5 * playerSize);
-	// 18/24 so player can access bottom quarter of screen
-	float yMin = Grid::getGridPos(0, 18, window).y - (0.5 * playerSize);
-	float yMax = window.getSize().y - (0.5 * playerSize);
-
-	this->mousePosition = sf::Mouse::getPosition(window); // "real" position of the mouse
-
-	// X coord bound checking:
-	if (this->mousePosition.x < xMin)
-		this->mouseVisual.x = xMin;
-	else if (this->mousePosition.x > xMax)
-		this->mouseVisual.x = xMax;
+	if (this->respawnCooldown > 0)
+	{
+		sf::Vector2f goalPos = Grid::getGridPos(30, 30, this->getScale().x);
+		this->glideTo(goalPos.x, goalPos.y);
+	}
 	else
-		this->mouseVisual.x = this->mousePosition.x;
+	{
+		// Store lastvalidpos *before* making any changes
+		this->lastValidPosition = this->getPosition();
 
-	// Y coord bound checking:
-	if (this->mousePosition.y < yMin)
-		this->mouseVisual.y = yMin;
-	else if (this->mousePosition.y > yMax)
-		this->mouseVisual.y = yMax;
-	else
-		this->mouseVisual.y = this->mousePosition.y;
+		// size is exactly equal to localBounds.width because origin of local bounds is (0,0)
+		// and remember player is square	
+		float playerSize = this->getLocalBounds().width * this->getScale().x;
+		// however, player is not centered
+		float xMax = window.getSize().x - (0.5 * playerSize);
+		float xMin = 0 + (0.5 * playerSize);
+		// 18/24 so player can access bottom quarter of screen
+		float yMin = Grid::getGridPos(0, 18, window).y - (0.5 * playerSize);
+		float yMax = window.getSize().y - (0.5 * playerSize);
 
-	this->movementInstructions[0] = mouseVisual;
+		this->mousePosition = sf::Mouse::getPosition(window); // "real" position of the mouse
+
+		// X coord bound checking:
+		if (this->mousePosition.x < xMin)
+			this->mouseVisual.x = xMin;
+		else if (this->mousePosition.x > xMax)
+			this->mouseVisual.x = xMax;
+		else
+			this->mouseVisual.x = this->mousePosition.x;
+
+		// Y coord bound checking:
+		if (this->mousePosition.y < yMin)
+			this->mouseVisual.y = yMin;
+		else if (this->mousePosition.y > yMax)
+			this->mouseVisual.y = yMax;
+		else
+			this->mouseVisual.y = this->mousePosition.y;
+
+		this->movementInstructions[0] = mouseVisual;
+	}
 }
 
 /*************************************************************
@@ -130,6 +146,24 @@ void Player::reduceShotTimer(void)
 	}
 }
 
+unsigned int Player::getRespawnCooldown(void) const
+{
+	return this->respawnCooldown;
+}
+
+void Player::setRespawnCooldown(unsigned int cooldown)
+{
+	this->respawnCooldown = cooldown;
+}
+
+void Player::reduceRespawnCooldown(void)
+{
+	if (respawnCooldown > 0)
+	{
+		this->respawnCooldown -= 1;
+	}
+}
+
 /*************************************************************
 * Function: returnToValidPos()                              *
 * Description: Returns to valid position				    *
@@ -160,14 +194,12 @@ void Player::collideWith(GameObject* other)
 	if (m != nullptr)
 	{
 		this->returnToValidPos();
-		std::cout << "Happening";
 		return;
 	}
 
 	CentipedePart* cen = dynamic_cast<CentipedePart*>(other);
 	if (cen != nullptr)
 	{
-		cen->hit();
 		this->hit();
 		return;
 	}
@@ -188,4 +220,9 @@ void Player::collideWith(GameObject* other)
 	}
 
 
+}
+
+void Player::heal(void)
+{
+	this->health = 1;
 }

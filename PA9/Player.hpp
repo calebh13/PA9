@@ -35,15 +35,21 @@ public:
 	enum action isDead() const;
 	void returnToValidPos(void);
 	void collideWith(GameObject* other);
+	void heal(void);
 
 	//Functions around shooting
 	bool shoot(void);
 	void reduceShotTimer(void);
 
+	unsigned int getRespawnCooldown(void) const;
+	void setRespawnCooldown(unsigned int cooldown);
+	void reduceRespawnCooldown(void);
+
 private:
 	//Private variables around movement and shooting
 	unsigned int lives;
 	unsigned int shotCooldown;
+	unsigned int respawnCooldown;
 	sf::Vector2i mousePosition;
 	sf::Vector2f mouseVisual;
 	sf::Vector2f lastValidPosition;
