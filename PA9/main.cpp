@@ -3,6 +3,7 @@
 
 int main()
 {
+    //Just does randomness and runs game
     srand((unsigned int)time(0));
 
     /* // Remove the /* at the start of this line to run the tests:

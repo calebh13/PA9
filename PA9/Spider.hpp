@@ -1,8 +1,18 @@
+/*
+	Jace, Lucas
+
+	Description: This is the header file for the Spider Class
+
+   History: 4/19/24 - Class was created and implimented initially by Jace
+			4/21/24 - Code refactored by Lucas
+
+*/
 #pragma once
 #include "GameObject.hpp"
 #include <time.h>
 #include "Bullet.hpp"
 
+//Spiders inherit gameObject
 class Spider : public GameObject
 {
 public:
@@ -14,10 +24,13 @@ public:
 	}
 	// hit and isDead is inherited from GameObject 
 	void collideWith(GameObject* other);
-	void genRandomDir();
 	void genNewPosition(const sf::RenderWindow& window);
 
+	//Spiders move in random directions
+	void genRandomDir();
+
 private:
-	float moveCoolDown = 2.0f;
+	//Spiders have cooldowns on their movement
+	const float moveCoolDown = 2.0f;
 	int xDir, yDir;
 };
