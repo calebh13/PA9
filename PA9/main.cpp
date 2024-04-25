@@ -6,7 +6,7 @@ int main()
     srand((unsigned int)time(0));
 
     Test test;
-    test.testSound();
+    test.testGrid();
 
     //GameWrapper game;
     //game.run();

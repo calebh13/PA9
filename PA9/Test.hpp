@@ -10,11 +10,9 @@ public:
 	void testRoundSetup();
 	//play all the sounds one by one
 	void testSound();
-	//test if getGridPos gives correct converitions
-	void testGetGrigPos();
-	//test snapToGrid
-	void testSnapToGrid();
-	//test getGridIndices
-	void testgetGridIndices();
+	//test grid functions
+	void testGrid();
+
+
 };
 

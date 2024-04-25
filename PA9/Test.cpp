@@ -1,7 +1,14 @@
 #include "test.hpp"
 
 
-//check is pointers in the Wrapper are initialized
+/*
+* Function: collideWith()
+* Description: Test if the pointers in the Game Wrapper are initialized.
+* Input parameters: None
+* Returns: None
+* Preconditions: None
+* Postconditions: None
+*/
 void Test::testRoundSetup()
 {
 	GameWrapper* pGameWrapper = new GameWrapper;
@@ -16,7 +23,14 @@ void Test::testRoundSetup()
 	delete pGameWrapper;
 }
 
-//play all the sounds one by one
+/*
+* Function: testSound()
+* Description: Play each sound and ask user if they herd it.
+* Input parameters: None
+* Returns: None
+* Preconditions: None
+* Postconditions: None
+*/
 void Test::testSound()
 {
 	GameWrapper* pGameWrapper = new GameWrapper;
@@ -43,62 +57,33 @@ void Test::testSound()
 	delete pGameWrapper;
 }
 
-// test if grid functions give correct converitions
-void Test::testGetGrigPos()
+/*
+* Function: testGrid()
+* Description: test all grid functions
+* Input parameters: None
+* Returns: None
+* Preconditions: None
+* Postconditions: None
+*/
+void Test::testGrid()
 {
+	// Run a test position through all the Grid functions, and make sure it preserves the location
 	GameWrapper* pGameWrapper = new GameWrapper;
-	
-	
-	if (Grid::getGridPos(12, 12, *pGameWrapper->window).y == 480 && Grid::getGridPos(12, 12, *pGameWrapper->window).x == 480)
+	sf::Vector2f testPos = Grid::getGridPos(12, 15, *(pGameWrapper->window));
+	sf::Vector2i indices = Grid::getGridIndices(testPos, *(pGameWrapper->window));
+	sf::Vector2f indicesPos = Grid::getGridPos(indices.x, indices.y, *(pGameWrapper->window));
+	testPos = Grid::snapToGrid(testPos, *(pGameWrapper->window));
+	indicesPos = Grid::snapToGrid(indicesPos, *(pGameWrapper->window));
+	sf::Vector2i newTestIndices = Grid::getGridIndices(testPos, *(pGameWrapper->window));
+	sf::Vector2i newIndices = Grid::getGridIndices(indicesPos, *(pGameWrapper->window));
+	if (newIndices.x == newTestIndices.x && newIndices.y == newTestIndices.y && newIndices.x == 12 && newIndices.y == 15)
 	{
-		std::cout << "getGridPos works!\n";
+		std::cout << "All the grid functions work!\n";
 	}
 	else
 	{
-		std::cout << "getGridPos does not work!\n";
+		std::cout << "Not all the grid functions work!\n";
 	}
-	
-	
-	delete pGameWrapper;
 }
 
-//test snap to grid
-void Test::testSnapToGrid()
-{
-	GameWrapper* pGameWrapper = new GameWrapper;
-	sf::Vector2f pos;
-	pos.x = 485;
-	pos.y = 485;
 
-	if (Grid::snapToGrid(pos, *pGameWrapper->window).y == 480 && Grid::snapToGrid(pos, *pGameWrapper->window).x == 480)
-	{
-		std::cout << "snapToGrid works!\n";
-	}
-	else
-	{
-		std::cout << "snapToGrid does not work!\n";
-	}
-
-
-	delete pGameWrapper;
-}
-
-void Test::testgetGridIndices()
-{
-	GameWrapper* pGameWrapper = new GameWrapper;
-	sf::Vector2f pos;
-	pos.x = 480;
-	pos.y = 480;
-
-	if (Grid::getGridIndices(pos, *pGameWrapper->window).y == 12 && Grid::getGridIndices(pos, *pGameWrapper->window).x == 12)
-	{
-		std::cout << "getGridIndices works!\n";
-	}
-	else
-	{
-		std::cout << "getGridIndices does not work!\n";
-	}
-
-
-	delete pGameWrapper;
-}
