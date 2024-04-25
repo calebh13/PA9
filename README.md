@@ -15,3 +15,5 @@ Shooting the centipede's body will knock a segment off, while shooting the head 
 You must set the environment variable %SFML\_DIR% to your SFML directory (the one with bin, lib, etc.)\
 To do so, open a command prompt as admin and run this command: `setx SFML_DIR <C:/.../sfml>`\
 Then simply build the project using Visual Studio.
+### Video Link
+https://www.youtube.com/watch?v=mFmnq48zK2U

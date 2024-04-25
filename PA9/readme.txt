@@ -14,3 +14,6 @@ IMPORTANT: Build Requirements
 You must set the environment variable %SFML_DIR% to your SFML directory (the one with bin, lib, etc.)
 To do so, open a command prompt as admin and run this command: `setx SFML_DIR <C:/.../sfml>`
 Then simply git clone the repo and build the project using Visual Studio. 
+
+Video Link:
+https://www.youtube.com/watch?v=mFmnq48zK2U
