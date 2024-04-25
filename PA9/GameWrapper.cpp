@@ -200,6 +200,7 @@ void GameWrapper::run(void)
             // Collision loop:
             for (int j = i + 1; j < objList.size(); j++)
             {
+                if (i <= 0) i = 0;
                 if (objList[i]->getGlobalBounds().intersects(objList[j]->getGlobalBounds()))
                 {
                     objList[i]->collideWith(objList[j]);
