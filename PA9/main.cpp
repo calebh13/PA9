@@ -6,7 +6,7 @@ int main()
 
     // TEST TEXTURE
     Test obj;
-    obj.testTextures();
+    obj.testObjMovement();
 
     GameWrapper game;
     //game.run();
