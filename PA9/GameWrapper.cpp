@@ -131,8 +131,6 @@ void GameWrapper::run(void)
         for (int i = 0; i < objList.size(); i++)
         {
             objList[i]->update(*window); // movement
-            int eraseIndexI = 0, eraseIndexJ = 0;
-            
             // Collision loop:
             for (int j = i + 1; j < objList.size(); j++)
             {
@@ -144,18 +142,25 @@ void GameWrapper::run(void)
                 switch (objList[i]->isDead())
                 {
                 case action::DESTROY:
+                {
                     objList.erase(objList.begin() + i);
                     i--;
                     j--;
                     break;
+                }
+
                 case action::CENTIPEDE_DESTROYED:
+                {
                     // This should be all the necessary code for centipede destruction.
                     objList.erase(objList.begin() + i);
                     i--;
                     j--;
                     centipedeCounter--;
                     break;
+                }
+
                 case action::CENTIPEDE_SHOT:
+                {
                     // This means the node behind the shot part is guaranteed to not be nullptr
                     CentipedePart* shotPart = dynamic_cast<CentipedePart*>(objList[i]);
                     CentipedePart* nodeBehind = shotPart->getNodeBehind();
@@ -168,47 +173,60 @@ void GameWrapper::run(void)
                     // Important: set node behind next node to nullptr, since we'll be deleting this guy
                     lastBodyNode->getFrontNode()->setNodeBehind(nullptr);
                     GameObject* toErase = dynamic_cast<GameObject*>(lastBodyNode);
-                    for (eraseIndexI = 0; eraseIndexI < objList.size(); eraseIndexI++)
+                    int eraseIndex = 0;
+                    for (; eraseIndex < objList.size(); eraseIndex++)
                     {
-                        if (objList[eraseIndexI] == toErase)
+                        if (objList[eraseIndex] == toErase)
                         {
                             break;
                         }
                     }
                     objList.push_back(new Mushroom(objScale, Grid::snapToGrid(lastBodyNode->getPosition(), objScale), textureList.at("Mushroom"), 4));
-                    objList.erase(objList.begin() + eraseIndexI);
-                    if (eraseIndexI <= i)
+                    objList.erase(objList.begin() + eraseIndex);
+                    if (eraseIndex <= i)
                     {
                         i--;
                     }
-                    if (eraseIndexI <= j)
+                    if (eraseIndex <= j)
                     {
                         j--;
                     }
                     shotPart->heal();
                     break;
+                }
+                
                 case action::RESPAWN:
+                {
                     player->setPosition(Grid::getGridPos(12, 20, *window));
                     soundList.at("PlayerDeath").play();
                     break;
+                }
+
                 case action::GAME_OVER:
+                {
                     return;
                     break;
+                }
                 }
 
                 switch (objList[j]->isDead())
                 {
                 case action::DESTROY:
+                {
                     objList.erase(objList.begin() + j);
                     j--;
                     break;
+                }
                 case action::CENTIPEDE_DESTROYED:
+                {
                     objList.erase(objList.begin() + i);
                     soundList.at("Split").play();
                     j--;
                     centipedeCounter--;
                     break;
+                }
                 case action::CENTIPEDE_SHOT:
+                {
                     // This means the node behind the shot part is guaranteed to not be nullptr
                     CentipedePart* shotPart = dynamic_cast<CentipedePart*>(objList[j]);
                     CentipedePart* nodeBehind = shotPart->getNodeBehind();
@@ -221,32 +239,38 @@ void GameWrapper::run(void)
                     // Important: set node behind next node to nullptr, since we'll be deleting this guy
                     lastBodyNode->getFrontNode()->setNodeBehind(nullptr);
                     GameObject* toErase = dynamic_cast<GameObject*>(lastBodyNode);
-                    for (eraseIndexJ = 0; eraseIndexJ < objList.size(); eraseIndexJ++)
+                    int eraseIndex = 0;
+                    for (; eraseIndex < objList.size(); eraseIndex++)
                     {
-                        if (objList[eraseIndexJ] == toErase)
+                        if (objList[eraseIndex] == toErase)
                         {
                             break;
                         }
                     }
                     objList.push_back(new Mushroom(objScale, Grid::snapToGrid(lastBodyNode->getPosition(), objScale), textureList.at("Mushroom"), 4));
-                    objList.erase(objList.begin() + eraseIndexJ);
-                    if (eraseIndexJ <= i)
+                    objList.erase(objList.begin() + eraseIndex);
+                    if (eraseIndex <= i)
                     {
                         i--;
                     }
-                    if (eraseIndexJ <= j)
+                    if (eraseIndex <= j)
                     {
                         j--;
                     }
                     shotPart->heal();
                     break;
+                }
                 case action::RESPAWN:
+                {
                     player->setPosition(Grid::getGridPos(12, 20, *window));
                     soundList.at("PlayerDeath").play();
                     break;
+                }
                 case action::GAME_OVER:
+                {
                     return;
                     break;
+                }
                 }
             }
         }
