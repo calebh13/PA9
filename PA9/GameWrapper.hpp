@@ -1,3 +1,12 @@
+/*
+	Lucas, Caleb
+
+	Description: This the header file for the wrapper class of the game
+
+// History: 4/20/24 - Class was created and implimented initially by Caleb
+			4/24/24 - Refactored by Lucas
+
+*/
 #pragma once
 #include "GameObject.hpp"
 #include "Player.hpp"
@@ -22,7 +31,7 @@ private:
 	Flea* flea;
 	unsigned int centipedeCounter;
 
-	//Helper function to construtor. Reads assets from file
+	//Helper function to construtor
 	void loadAssets();
 	void placeMushrooms();
 	void placeInitEntities();

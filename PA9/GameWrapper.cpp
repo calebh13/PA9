@@ -1,3 +1,13 @@
+/*
+    Lucas, Caleb
+
+    Description: This the cpp file for the wrapper class of the game. It handles 
+                    all game logic and running
+
+// History: 4/20/24 - Class was created and implimented initially by Caleb
+            4/24/24 - Refactored by Lucas
+
+*/
 #include "GameWrapper.hpp"
 #include "GameObject.hpp"
 #include "Mushroom.hpp"
@@ -7,7 +17,14 @@
 #include "CentipedeHead.hpp"
 
 
-
+/*************************************************************
+* Function: GameWrapper()   								*
+* Description: Constructor. Initializes all values			*
+* Input parameters: None									*
+* Returns: None											    *
+* Preconditions: N/A							            *
+* Postconditions: Object Created      					    *
+*************************************************************/
 GameWrapper::GameWrapper(void)
 {
 	sf::ContextSettings settings;
@@ -17,15 +34,43 @@ GameWrapper::GameWrapper(void)
     // objScale makes objects fit exactly inside 1 grid slot
     this->objScale = (float)windowDimension / (16 * Grid::getGridDimension());
 
+    //Sets default values of the window
     window = new sf::RenderWindow(sf::VideoMode(windowDimension, windowDimension), "Centipede", sf::Style::Titlebar | sf::Style::Close, settings);
     window->setFramerateLimit(60);
     window->setMouseCursorVisible(false);
 
+    //Self-evident
     loadAssets();
     placeMushrooms();
     placeInitEntities();
+
 }
 
+/*************************************************************
+* Function: ~GameWrapper()   								*
+* Description: Destructor. Frees all game objects   		*
+* Input parameters: None									*
+* Returns: None											    *
+* Preconditions: N/A							            *
+* Postconditions: Object destroed      					    *
+*************************************************************/
+GameWrapper::~GameWrapper()
+{
+    delete window;
+    while (!objList.empty())
+    {
+        objList.pop_back(); // automatically calls destructors
+    }
+}
+
+/*************************************************************
+* Function: placeInitEntities()								*
+* Description: Places all initial entities  				*
+* Input parameters: None									*
+* Returns: None											    *
+* Preconditions: N/A							            *
+* Postconditions: Entities placed    					    *
+*************************************************************/
 void GameWrapper::placeInitEntities(void) {
     // Create player:
     this->player = new Player(this->objScale, Grid::getGridPos(12, 20, *window), textureList.at("Player"));
@@ -35,13 +80,20 @@ void GameWrapper::placeInitEntities(void) {
     objList.push_back(player);
 
     // Create (hidden) flea:
-    //this->flea = new Flea(objScale, Grid::getGridPos(-1, -1, *window), textureList.at("Flea"), 1, 1);
     this->flea = new Flea(objScale, Grid::getGridPos(30, 30, *window), textureList.at("Flea"), 1, 1);
     objList.push_back(flea);
 
     centipedeCounter = 0;
 }
 
+/*************************************************************
+* Function: placeMushrooms()        						*
+* Description: Places all initial mushrooms  				*
+* Input parameters: None									*
+* Returns: None											    *
+* Preconditions: N/A							            *
+* Postconditions: Mushrooms placed    					    *
+*************************************************************/
 void GameWrapper::placeMushrooms(void) {
     // Place initial mushrooms:
     std::vector<sf::Vector2i> used;
@@ -65,6 +117,14 @@ void GameWrapper::placeMushrooms(void) {
     }
 }
 
+/*************************************************************
+* Function: loadAssets()        							*
+* Description: Inserts all textures and audios to hashmaps  *
+* Input parameters: None									*
+* Returns: None											    *
+* Preconditions: Files must exist				            *
+* Postconditions: Data structures filled				    *
+*************************************************************/
 void GameWrapper::loadAssets(void) {
     // Insert textures into list
     // We need to load here because otherwise the textures don't get created properly
@@ -77,6 +137,7 @@ void GameWrapper::loadAssets(void) {
     textureList.insert(std::pair<std::string, sf::Texture>("Player", sf::Texture()));
     textureList.insert(std::pair<std::string, sf::Texture>("Spider", sf::Texture()));
 
+    //Load textures
     textureList.at("Bullet").loadFromFile("assets/CEN_1BLLT.png");
     textureList.at("Body").loadFromFile("assets/CEN_1BODY.png");
     textureList.at("Flea").loadFromFile("assets/CEN_1FLEA.png");
@@ -91,15 +152,6 @@ void GameWrapper::loadAssets(void) {
     soundList.insert(std::pair<std::string, AudioWrapper>("Mush", AudioWrapper("assets/mushDeath.wav")));
     soundList.insert(std::pair<std::string, AudioWrapper>("PlayerDeath", AudioWrapper("assets/playerDeath.wav")));
     soundList.insert(std::pair<std::string, AudioWrapper>("SpiderDeath", AudioWrapper("assets/spiderDeath.wav")));
-}
-
-GameWrapper::~GameWrapper()
-{
-    delete window;
-    while (!objList.empty())
-    {
-        objList.pop_back(); // automatically calls destructors
-    }
 }
 
 void GameWrapper::run(void)
