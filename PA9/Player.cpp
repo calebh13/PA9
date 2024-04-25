@@ -1,15 +1,42 @@
+/*
+	Caleb, Lucas, Jace
+
+	Description: This is the cpp file for the Player Class
+
+   History: 4/17/24 - Class was created initially by Lucas with rudamentary movement
+			4/19/24 - Movement refactored and shots added by Jace
+			4/20/24 - Collision added by Caleb
+
+*/
 #include "Player.hpp"
 #include "Bullet.hpp"
 #include "Grid.hpp"
-#include <iostream>
 
+/*************************************************************
+* Function: hit()											*
+* Description: Players ovverride hit.						*
+* Input parameters: None									*
+* Returns: None											    *
+* Preconditions: N/A							            *
+* Postconditions: Health changed      					    *
+*************************************************************/
 void Player::hit()
 {
 	health -= 1;
 }
 
+/*************************************************************
+* Function: isDead()									    *
+* Description: Gives instructions on whether or not to kill a*
+				given game object.							*
+* Input parameters: None									 *
+* Returns: Action enum (See Game Object for definition)     *
+* Preconditions: Game Object must exist                     *
+* Postconditions: Instructions are returned                 *
+*************************************************************/
 enum action Player::isDead() const
 {
+	//Players will die, or end the game
 	if (health == 0)
 	{
 		return static_cast<action>(RESPAWN);
@@ -20,6 +47,14 @@ enum action Player::isDead() const
 	}
 }
 
+/*************************************************************
+* Function: genNewPosition()                                *
+* Description: This function sends the object to its new pos*
+* Input parameters: Window where object is drawn		    *
+* Returns: Nothing                                          *
+* Preconditions: Object and window must exist               *
+* Postconditions: Object position is changed                *
+*************************************************************/
 void Player::genNewPosition(const sf::RenderWindow& window)
 {
 	// Store lastvalidpos *before* making any changes
@@ -54,12 +89,20 @@ void Player::genNewPosition(const sf::RenderWindow& window)
 		this->mouseVisual.y = this->mousePosition.y;
 
 	this->movementInstructions[0] = mouseVisual;
-	//
-	//  << "Mouse: (" << movementInstructions[0].x << ", " << movementInstructions[0].y << ")\n";
 }
 
+/*************************************************************
+* Function: shoot()                                         *
+* Description: lets the player spawn a bullet object        *
+* Input parameters: None								    *
+* Returns: boolean representing whether the player is		*
+			allowed to shoot								*
+* Preconditions: Player must exist			                *
+* Postconditions: NA					                    *
+*************************************************************/
 bool Player::shoot(void)
 {
+	//Simple frame timer
 	if (shotCooldown == 0)
 	{
 		shotCooldown = 10;
@@ -68,6 +111,14 @@ bool Player::shoot(void)
 	else return false;
 }
 
+/*************************************************************
+* Function: reduceShotTimer()                               *
+* Description: decriments the players shot timer            *
+* Input parameters: None								    *
+* Returns: None												*
+* Preconditions: Player must exist			                *
+* Postconditions: Shot timer reduced                        *
+*************************************************************/
 void Player::reduceShotTimer(void)
 {
 	if (shotCooldown != 0)
@@ -76,13 +127,32 @@ void Player::reduceShotTimer(void)
 	}
 }
 
+/*************************************************************
+* Function: returnToValidPos()                              *
+* Description: Returns to valid position				    *
+* Input parameters: None								    *
+* Returns: None												*
+* Preconditions: None						                *
+* Postconditions: Returns to last valid position            *
+*************************************************************/
 void Player::returnToValidPos(void)
 {
 	this->setPosition(lastValidPosition);
 }
 
+/*************************************************************
+* Function: collideWith()									*
+* Description: Makes changes to game object depending on what*
+				it has collided with.						*
+* Input parameters: Pointer to object that was hit			*
+* Returns: None											    *
+* Preconditions: input pointer cannot be nullptr            *
+* Postconditions: Object's parameters are changed on hit    *
+*************************************************************/
 void Player::collideWith(GameObject* other)
 {
+	//Players die when touching anything except a mushroom. 
+	//If touching mushroom, sent to valid pos
 	Mushroom* m = dynamic_cast<Mushroom*>(other);
 	if (m != nullptr)
 	{

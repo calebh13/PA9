@@ -1,5 +1,24 @@
+/*
+	Jace, Lucas
+
+	Description: This is the cpp file for the Spider Class
+
+   History: 4/19/24 - Class was created and implimented initially by Jace
+			4/21/24 - Code refactored by Lucas
+
+*/
 #include "Spider.hpp"
 
+
+/*************************************************************
+* Function: collideWith()									*
+* Description: Makes changes to game object depending on what*
+				it has collided with.						*
+* Input parameters: Pointer to object that was hit			*
+* Returns: None											    *
+* Preconditions: input pointer cannot be nullptr            *
+* Postconditions: Object's parameters are changed on hit    *
+*************************************************************/
 void Spider::collideWith(GameObject* other)
 {
 	Bullet* bullet = dynamic_cast<Bullet*>(other);
@@ -19,6 +38,15 @@ void Spider::collideWith(GameObject* other)
 	}
 }
 
+/*************************************************************
+* Function: genRandomDir()   								*
+* Description: Generates a random direction for the spider  *
+				to travel in.								*
+* Input parameters: None									*
+* Returns: None											    *
+* Preconditions: None							            *
+* Postconditions: Spider's velocities are set			    *
+*************************************************************/
 void Spider::genRandomDir()
 {
 	int randomDir = rand() % 8; // 0, 1, 2, or 3
@@ -49,13 +77,24 @@ void Spider::genRandomDir()
 	}
 }
 
+/*************************************************************
+* Function: genNewPosition()                                *
+* Description: This function sends the object to its new pos*
+* Input parameters: Window where object is drawn		    *
+* Returns: Nothing                                          *
+* Preconditions: Object and window must exist               *
+* Postconditions: Object position is changed                *
+*************************************************************/
 void Spider::genNewPosition(const sf::RenderWindow& window)
 {
+	//Spider has a chance to re-roll it's movement
 	int chance = rand() % 4;
 	if (chance == 2)
 	{
 		this->genRandomDir();
 	}
+
+	//Checks to see if the spider is within bounds. If not, it's velocities are reset.
 	sf::Vector2i indices = Grid::getGridIndices(this->getPosition(), this->getScale().x);
 	if (this->getPosition().x > window.getSize().x)
 	{
@@ -75,6 +114,8 @@ void Spider::genNewPosition(const sf::RenderWindow& window)
 	{
 		yDir = 1;
 	}
+
+	//Once the spider is moving in a legal direction, it is sent there using glideTo
 	this->glideTo(this->getPosition().x + (50 * xDir), this->getPosition().y + (50 * yDir));
 }
 
