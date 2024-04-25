@@ -174,6 +174,14 @@ void GameWrapper::loadAssets(void) {
     soundList.insert(std::pair<std::string, AudioWrapper>("SpiderDeath", AudioWrapper("assets/spiderDeath.wav")));
 }
 
+/*************************************************************
+* Function: run()               							*
+* Description: Runs and handles all logic of the game       *
+* Input parameters: None									*
+* Returns: None											    *
+* Preconditions: Data must be instantiated		            *
+* Postconditions: Game is run           				    *
+*************************************************************/
 void GameWrapper::run(void)
 {
     int counter = 0, round = 1;
@@ -398,6 +406,14 @@ void GameWrapper::run(void)
     }
 }
 
+/*************************************************************
+* Function: startRound()           							*
+* Description: Starts and runs an individual round          *
+* Input parameters: The round number    					*
+* Returns: None											    *
+* Preconditions: Data must be instantiated		            *
+* Postconditions: Round   is run           				    *
+*************************************************************/
 void GameWrapper::startRound(unsigned int round)
 {
     // Palette swaps:
