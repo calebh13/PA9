@@ -1,13 +1,22 @@
+/*
+	Caleb
+	
+	Description: Header File for centipede head
+
+// History: 4/24/24 - Class was created and implimented initially by Caleb
+
+*/
 #pragma once
 #include "GameObject.hpp"
 #include "Grid.hpp"
 #include "CentipedePart.hpp"
 
-
+//Inherits from centipede part
 class CentipedeHead : public CentipedePart
 {
 
 public:
+	//Constructor
 	CentipedeHead(unsigned int scale = 1, const sf::Vector2f& pos = sf::Vector2f(0, 0),
 		const sf::Texture& texture = sf::Texture(), unsigned int health = 1, unsigned int interpolationFrames = 10, dir curDir = RIGHT,
 		dir horizDir = RIGHT, dir vertGoalDir = DOWN) : CentipedePart(scale, pos, texture, health, interpolationFrames, curDir)
@@ -18,6 +27,7 @@ public:
 		movingVertically = (curDir == UP || curDir == DOWN);
 	}
 
+	//Overloaded from GameObject
 	void collideWith(GameObject* other);
 	enum action isDead(void) const;
 	void bonkMushroom(dir mushroomDir);

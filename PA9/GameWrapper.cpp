@@ -227,6 +227,7 @@ void GameWrapper::run(void)
 
                 case action::CENTIPEDE_SHOT:
                 {
+                    soundList.at("Split").play();
                     // This means the node behind the shot part is guaranteed to not be nullptr
                     CentipedePart* shotPart = dynamic_cast<CentipedePart*>(objList[i]);
                     CentipedePart* nodeBehind = shotPart->getNodeBehind();
@@ -293,6 +294,7 @@ void GameWrapper::run(void)
                 }
                 case action::CENTIPEDE_SHOT:
                 {
+                    soundList.at("Split").play();
                     // This means the node behind the shot part is guaranteed to not be nullptr
                     CentipedePart* shotPart = dynamic_cast<CentipedePart*>(objList[j]);
                     CentipedePart* nodeBehind = shotPart->getNodeBehind();
