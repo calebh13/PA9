@@ -201,6 +201,17 @@ void GameWrapper::run(void)
         player->reduceShotTimer();
     }
 }
+bool GameWrapper::GameWrapperTest(void)
+{
+    if (this->window != nullptr && this->player != nullptr && this->flea != nullptr)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 void GameWrapper::startRound(unsigned int round)
 {
     // Palette swaps:

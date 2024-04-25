@@ -4,12 +4,15 @@
 #include "AudioWrapper.hpp"
 #include "Flea.hpp"
 #include <unordered_map>
+#include "Test.hpp"
 class GameWrapper
 {
+	friend class Test;
 public:
 	GameWrapper(void);
 	~GameWrapper();
 	void run(void);
+	bool GameWrapperTest(void);
 private:
 	// IMPORTANT NOTE: player will always be at index 0 of objList.
 	std::vector<GameObject*> objList; // polymorphism!
