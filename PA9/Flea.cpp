@@ -20,7 +20,7 @@ void Flea::collideWith(GameObject* other)
 
 void Flea::hit(void)
 {
-	this->setPosition(Grid::getGridPos(0, 30, this->getScale().x));
+	this->setPosition(Grid::getGridPos(200, 200, this->getScale().x));
 }
 
 action Flea::isDead(void) const
@@ -34,7 +34,7 @@ void Flea::genNewPosition(const sf::RenderWindow& window)
 	{
 		// If offscreen, stay at same position
 		//std::cout << "OOB. Flea leaving\n";
-		this->glideTo(Grid::getGridPos(30, 30, this->getScale().x).x, Grid::getGridPos(30, 30, this->getScale().x).y);
+		this->glideTo(Grid::getGridPos(200, 200, this->getScale().x).x, Grid::getGridPos(200, 200, this->getScale().x).y);
 	}
 	else
 	{

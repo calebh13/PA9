@@ -4,6 +4,9 @@
 #include "AudioWrapper.hpp"
 #include "Flea.hpp"
 #include <unordered_map>
+
+constexpr unsigned int CENTIPEDE_SPEED = 6;
+
 class GameWrapper
 {
 public:
@@ -20,6 +23,7 @@ private:
 	sf::RenderWindow* window;
 	Player* player;
 	Flea* flea;
+
 	unsigned int centipedeCounter;
 
 	void startRound(unsigned int round);

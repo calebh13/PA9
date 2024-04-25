@@ -95,11 +95,11 @@
     <ClInclude Include="Player.hpp">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="CentipedePart.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AudioWrapper.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CentipedePart.hpp">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

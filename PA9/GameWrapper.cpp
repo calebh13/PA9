@@ -5,6 +5,7 @@
 #include "Player.hpp"
 #include "Grid.hpp"
 #include "CentipedeHead.hpp"
+#include <algorithm>
 
 GameWrapper::GameWrapper(void)
 {
@@ -94,17 +95,12 @@ void GameWrapper::run(void)
 {
     int counter = 0, round = 1;
     bool isRoundSetup = true;
-    int fleaCoolDown = 500;
-    
+    int fleaCoolDown = 2000;
+    startRound(round);
 
     while (window->isOpen())
     {
         // Maybe change this to a multi-frame thing later
-        if (isRoundSetup)
-        {
-            startRound(round);
-            isRoundSetup = false;
-        }
         sf::Event event;
         // pollEvent uses event as a return param for the internal event queue, so we must poll until queue is empty
         while (window->pollEvent(event))
@@ -128,7 +124,7 @@ void GameWrapper::run(void)
         fleaCoolDown--;
         if (fleaCoolDown < 0)
         {
-            fleaCoolDown = 500;
+            fleaCoolDown = 2000;
             this->flea->setPosition(Grid::getGridPos(rand() % 24, 1, *window));
         }
 
@@ -153,15 +149,45 @@ void GameWrapper::run(void)
                     j--;
                     break;
                 case action::CENTIPEDE_DESTROYED:
+                    // This should be all the necessary code for centipede destruction.
                     objList.erase(objList.begin() + i);
-                    soundList.at("Split").play();
                     i--;
                     j--;
-                    // todo later: subtract from centipede counter
+                    centipedeCounter--;
                     break;
-                case action::CENTIPEDE_HEAD_MOVE:
-                    // This means that objList[i] is guaranteed to be a CentipedeHead*
-                    objList.erase(objList.begin() + i);
+                case action::CENTIPEDE_SHOT:
+                    // This means the node behind the shot part is guaranteed to not be nullptr
+                    CentipedePart* shotPart = dynamic_cast<CentipedePart*>(objList[i]);
+                    CentipedePart* nodeBehind = shotPart->getNodeBehind();
+                    // Find last part of the centipede:
+                    while (nodeBehind->getNodeBehind() != nullptr)
+                    {
+                        nodeBehind = nodeBehind->getNodeBehind();
+                    }
+                    CentipedeBody* lastBodyNode = dynamic_cast<CentipedeBody*>(nodeBehind);
+                    // Important: set node behind next node to nullptr, since we'll be deleting this guy
+                    lastBodyNode->getFrontNode()->setNodeBehind(nullptr);
+                    GameObject* toErase = dynamic_cast<GameObject*>(lastBodyNode);
+                    int eraseIndex = 0;
+                    for (; eraseIndex < objList.size(); eraseIndex++)
+                    {
+                        if (objList[eraseIndex] == toErase)
+                        {
+                            break;
+                        }
+                    }
+                    objList.push_back(new Mushroom(objScale, Grid::snapToGrid(lastBodyNode->getPosition(), objScale), textureList.at("Mushroom"), 4));
+                    objList.erase(objList.begin() + eraseIndex);
+                    if (eraseIndex <= i)
+                    {
+                        i--;
+                    }
+                    if (eraseIndex <= j)
+                    {
+                        j--;
+                    }
+                    shotPart->heal();
+                    break;
                 }
 
                 switch (objList[j]->isDead())
@@ -174,13 +200,46 @@ void GameWrapper::run(void)
                     objList.erase(objList.begin() + i);
                     soundList.at("Split").play();
                     j--;
-                    // todo later: subtract from centipede counter
+                    centipedeCounter--;
+                    break;
+                case action::CENTIPEDE_SHOT:
+                    // This means the node behind the shot part is guaranteed to not be nullptr
+                    CentipedePart* shotPart = dynamic_cast<CentipedePart*>(objList[j]);
+                    CentipedePart* nodeBehind = shotPart->getNodeBehind();
+                    // Find last part of the centipede:
+                    while (nodeBehind->getNodeBehind() != nullptr)
+                    {
+                        nodeBehind = nodeBehind->getNodeBehind();
+                    }
+                    CentipedeBody* lastBodyNode = dynamic_cast<CentipedeBody*>(nodeBehind);
+                    // Important: set node behind next node to nullptr, since we'll be deleting this guy
+                    lastBodyNode->getFrontNode()->setNodeBehind(nullptr);
+                    GameObject* toErase = dynamic_cast<GameObject*>(lastBodyNode);
+                    int eraseIndex = 0;
+                    for (; eraseIndex < objList.size(); eraseIndex++)
+                    {
+                        if (objList[eraseIndex] == toErase)
+                        {
+                            break;
+                        }
+                    }
+                    objList.push_back(new Mushroom(objScale, Grid::snapToGrid(lastBodyNode->getPosition(), objScale), textureList.at("Mushroom"), 4));
+                    objList.erase(objList.begin() + eraseIndex);
+                    if (eraseIndex <= i)
+                    {
+                        i--;
+                    }
+                    if (eraseIndex <= j)
+                    {
+                        j--;
+                    }
+                    shotPart->heal();
                     break;
                 }
             }
         }
 
-        // If flea is in bounds and good random value
+        // If flea is in bounds and good random value, spawn a mushroom
         if ((rand() % 100) <= 5 && this->flea->getPosition().y > 0 && this->flea->getPosition().y < Grid::getGridPos(0, 24, *window).y)
         {
             objList.push_back(new Mushroom(objScale, Grid::snapToGrid(this->flea->getPosition(), *window), textureList.at("Mushroom"), 4, 1));
@@ -199,8 +258,14 @@ void GameWrapper::run(void)
         window->display();
         counter++;
         player->reduceShotTimer();
+        if (centipedeCounter <= 0)
+        {
+            round++;
+            startRound(round);
+        }
     }
 }
+
 void GameWrapper::startRound(unsigned int round)
 {
     // Palette swaps:
@@ -224,23 +289,30 @@ void GameWrapper::startRound(unsigned int round)
     // Now we create a new centipede object
     // Spawn a centipede right above the top of the screen, and it will go down 1 square then immediately go right
 
-    CentipedeHead* head = new CentipedeHead(objScale, Grid::getGridPos(Grid::getGridDimension() / 2, 0, *window), \
-        textureList.at("Head"), 1, 6, DOWN, RIGHT);
-    centipedeCounter++;
+    CentipedeHead* head = new CentipedeHead(objScale, Grid::getGridPos(2, 1, *window), \
+        textureList.at("Head"), 1, CENTIPEDE_SPEED, DOWN, RIGHT);
+    CentipedeHead* head2 = new CentipedeHead(objScale, Grid::getGridPos(Grid::getGridDimension() - 2, 1,  *window), \
+        textureList.at("Head"), 1, CENTIPEDE_SPEED, DOWN, LEFT);
+    centipedeCounter = 2;
     CentipedePart* cur = head;
+    CentipedePart* cur2 = head2;
     objList.push_back(head);
+    objList.push_back(head2);
 
     for (int i = 1; i <= 12; i++)
     {
-        CentipedeBody* nextNode = new CentipedeBody(objScale, Grid::getGridPos(Grid::getGridDimension() / 2, -i, *window),
-            textureList.at("Body"), 1, 6, DOWN, cur);
+        CentipedeBody* nextNode = new CentipedeBody(objScale, Grid::getGridPos(2, -i + 1, *window),\
+            textureList.at("Body"), 1, CENTIPEDE_SPEED, DOWN, cur);
+        CentipedeBody* nextNode2 = new CentipedeBody(objScale, Grid::getGridPos(Grid::getGridDimension() - 2, -i + 1, *window), \
+            textureList.at("Body"), 1, CENTIPEDE_SPEED, DOWN, cur2);
         objList.push_back(nextNode);
+        objList.push_back(nextNode2);
         cur = nextNode;
+        cur2 = nextNode2;
     }
 
     // Spawn spider 
     objList.push_back(new Spider(objScale, Grid::getGridPos(0, Grid::getGridDimension() * .85, *window), textureList.at("Spider"), 4));
-
 
     // set player position to center
     player->setPosition(Grid::getGridPos(12, 20, *window));

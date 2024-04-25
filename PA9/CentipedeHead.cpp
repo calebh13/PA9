@@ -46,7 +46,7 @@ action CentipedeHead::isDead(void) const
 		}
 		else
 		{
-			return static_cast<action>(CENTIPEDE_HEAD_MOVE);
+			return static_cast<action>(CENTIPEDE_SHOT);
 		}
 	}
 	else
@@ -74,6 +74,16 @@ void CentipedeHead::bonkMushroom(dir mushroomDir)
 bool CentipedeHead::isMovingVertically(void) const
 {
 	return movingVertically;
+}
+
+dir CentipedeHead::getHorizDir(void) const
+{
+	return this->horizDir;
+}
+
+dir CentipedeHead::getVertDir(void) const
+{
+	return this->vertGoalDir;
 }
 
 void CentipedeHead::genNewPosition(const sf::RenderWindow& window)
@@ -156,9 +166,4 @@ void CentipedeHead::genNewPosition(const sf::RenderWindow& window)
 void CentipedeHead::incrementDir(dir& d)
 {
 	d = static_cast<dir>((d + 1) % 4);
-}
-
-void CentipedeHead::reverseDir(dir& d)
-{
-	d = static_cast<dir>((d + 2) % 4);
 }

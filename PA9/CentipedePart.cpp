@@ -25,6 +25,11 @@ void CentipedePart::pause(void)
     }
 }
 
+void CentipedePart::heal(void)
+{
+    this->health = 1;
+}
+
 void CentipedePart::forceRegeneration(void)
 {
     this->moveFrame = this->interpolationFrames;
@@ -32,4 +37,9 @@ void CentipedePart::forceRegeneration(void)
     {
         this->nodeBehind->forceRegeneration();
     }
+}
+
+void reverseDir(dir& d)
+{
+    d = static_cast<dir>((d + 2) % 4);
 }

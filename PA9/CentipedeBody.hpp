@@ -14,6 +14,8 @@ public:
 	}
 	void collideWith(GameObject* other);
 	enum action isDead(void) const;
+	void setFrontNode(CentipedePart* frontNode);
+	CentipedePart* getFrontNode(void) const;
 private:
 	CentipedePart* nodeInFront;
 	void genNewPosition(const sf::RenderWindow& window);

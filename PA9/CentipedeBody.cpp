@@ -34,10 +34,20 @@ action CentipedeBody::isDead(void) const
 		}
 		else
 		{
-			return static_cast<action>(SPLIT_CENTIPEDE);
+			return static_cast<action>(CENTIPEDE_SHOT);
 		}
 	}
 	else return static_cast<action>(NOTHING);
+}
+
+void CentipedeBody::setFrontNode(CentipedePart* frontNode)
+{
+	this->nodeInFront = frontNode;
+}
+
+CentipedePart* CentipedeBody::getFrontNode(void) const
+{
+	return this->nodeInFront;
 }
 
 void CentipedeBody::genNewPosition(const sf::RenderWindow& window)
