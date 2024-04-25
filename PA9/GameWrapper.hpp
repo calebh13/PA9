@@ -22,5 +22,10 @@ private:
 	Flea* flea;
 	unsigned int centipedeCounter;
 
+	//Helper function to construtor. Reads assets from file
+	void loadAssets();
+	void placeMushrooms();
+	void placeInitEntities();
+
 	void startRound(unsigned int round);
 };	

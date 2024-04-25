@@ -1,6 +1,5 @@
 /*
 	Jace
-	4/22/24
 
 	Description: This is the header file for the bullet class
 

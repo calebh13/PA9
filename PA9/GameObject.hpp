@@ -1,6 +1,5 @@
 /*
 	Lucas, Caleb, Jace
-	4/23/24
 
 	Description: This is a header file that defines the GameObject class. 
 

@@ -6,6 +6,8 @@
 #include "Grid.hpp"
 #include "CentipedeHead.hpp"
 
+
+
 GameWrapper::GameWrapper(void)
 {
 	sf::ContextSettings settings;
@@ -19,32 +21,12 @@ GameWrapper::GameWrapper(void)
     window->setFramerateLimit(60);
     window->setMouseCursorVisible(false);
 
-    // Insert textures into list
-    // We need to load here because otherwise the textures don't get created properly
-    
-    textureList.insert(std::pair<std::string, sf::Texture>("Mushroom", sf::Texture()));
-    textureList.insert(std::pair<std::string, sf::Texture>("Bullet", sf::Texture()));
-    textureList.insert(std::pair<std::string, sf::Texture>("Body", sf::Texture()));
-    textureList.insert(std::pair<std::string, sf::Texture>("Flea", sf::Texture()));
-    textureList.insert(std::pair<std::string, sf::Texture>("Head", sf::Texture()));
-    textureList.insert(std::pair<std::string, sf::Texture>("Player", sf::Texture()));
-    textureList.insert(std::pair<std::string, sf::Texture>("Spider", sf::Texture()));
+    loadAssets();
+    placeMushrooms();
+    placeInitEntities();
+}
 
-    textureList.at("Bullet").loadFromFile("assets/CEN_1BLLT.png");
-    textureList.at("Body").loadFromFile("assets/CEN_1BODY.png");
-    textureList.at("Flea").loadFromFile("assets/CEN_1FLEA.png");
-    textureList.at("Head").loadFromFile("assets/CEN_1HEAD.png");
-    textureList.at("Player").loadFromFile("assets/CEN_1PLYR.png");
-    textureList.at("Mushroom").loadFromFile("assets/CEN_1SHRM.png");
-    textureList.at("Spider").loadFromFile("assets/CEN_1SPDR.png");
-   
-
-    soundList.insert(std::pair<std::string, AudioWrapper>("Shoot", AudioWrapper("assets/laser.wav")));
-    soundList.insert(std::pair<std::string, AudioWrapper>("Split", AudioWrapper("assets/split.wav")));
-    soundList.insert(std::pair<std::string, AudioWrapper>("Mush", AudioWrapper("assets/mushDeath.wav")));
-    soundList.insert(std::pair<std::string, AudioWrapper>("PlayerDeath", AudioWrapper("assets/playerDeath.wav")));
-    soundList.insert(std::pair<std::string, AudioWrapper>("SpiderDeath", AudioWrapper("assets/spiderDeath.wav")));
-
+void GameWrapper::placeInitEntities(void) {
     // Create player:
     this->player = new Player(this->objScale, Grid::getGridPos(12, 20, *window), textureList.at("Player"));
     // centers the texture over the cursor
@@ -57,6 +39,10 @@ GameWrapper::GameWrapper(void)
     this->flea = new Flea(objScale, Grid::getGridPos(30, 30, *window), textureList.at("Flea"), 1, 1);
     objList.push_back(flea);
 
+    centipedeCounter = 0;
+}
+
+void GameWrapper::placeMushrooms(void) {
     // Place initial mushrooms:
     std::vector<sf::Vector2i> used;
     for (int i = 0; i < 30; i++)
@@ -77,8 +63,34 @@ GameWrapper::GameWrapper(void)
         used.push_back(cur);
         objList.push_back(new Mushroom(objScale, sf::Vector2f(Grid::getGridPos(cur.x, cur.y, *window)), textureList.at("Mushroom"), 4));
     }
+}
 
-    centipedeCounter = 0;
+void GameWrapper::loadAssets(void) {
+    // Insert textures into list
+    // We need to load here because otherwise the textures don't get created properly
+
+    textureList.insert(std::pair<std::string, sf::Texture>("Mushroom", sf::Texture()));
+    textureList.insert(std::pair<std::string, sf::Texture>("Bullet", sf::Texture()));
+    textureList.insert(std::pair<std::string, sf::Texture>("Body", sf::Texture()));
+    textureList.insert(std::pair<std::string, sf::Texture>("Flea", sf::Texture()));
+    textureList.insert(std::pair<std::string, sf::Texture>("Head", sf::Texture()));
+    textureList.insert(std::pair<std::string, sf::Texture>("Player", sf::Texture()));
+    textureList.insert(std::pair<std::string, sf::Texture>("Spider", sf::Texture()));
+
+    textureList.at("Bullet").loadFromFile("assets/CEN_1BLLT.png");
+    textureList.at("Body").loadFromFile("assets/CEN_1BODY.png");
+    textureList.at("Flea").loadFromFile("assets/CEN_1FLEA.png");
+    textureList.at("Head").loadFromFile("assets/CEN_1HEAD.png");
+    textureList.at("Player").loadFromFile("assets/CEN_1PLYR.png");
+    textureList.at("Mushroom").loadFromFile("assets/CEN_1SHRM.png");
+    textureList.at("Spider").loadFromFile("assets/CEN_1SPDR.png");
+
+    //Loads Audio Files
+    soundList.insert(std::pair<std::string, AudioWrapper>("Shoot", AudioWrapper("assets/laser.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("Split", AudioWrapper("assets/split.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("Mush", AudioWrapper("assets/mushDeath.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("PlayerDeath", AudioWrapper("assets/playerDeath.wav")));
+    soundList.insert(std::pair<std::string, AudioWrapper>("SpiderDeath", AudioWrapper("assets/spiderDeath.wav")));
 }
 
 GameWrapper::~GameWrapper()
