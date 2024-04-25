@@ -70,7 +70,7 @@ void Player::genNewPosition(const sf::RenderWindow& window)
 {
 	if (this->respawnCooldown > 0)
 	{
-		sf::Vector2f goalPos = Grid::getGridPos(30, 30, this->getScale().x);
+		sf::Vector2f goalPos = Grid::getGridPos(32, 32, this->getScale().x);
 		this->glideTo(goalPos.x, goalPos.y);
 	}
 	else

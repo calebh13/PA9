@@ -80,7 +80,7 @@ void Flea::genNewPosition(const sf::RenderWindow& window)
 	if ((this->getPosition().y) > (Grid::getGridPos(0, Grid::getGridDimension() + 6, this->getScale().x).y))
 	{
 		// If offscreen, stay at same position
-		this->glideTo(Grid::getGridPos(30, 30, this->getScale().x).x, Grid::getGridPos(30, 30, this->getScale().x).y);
+		this->glideTo(Grid::getGridPos(32, 32, this->getScale().x).x, Grid::getGridPos(32, 32, this->getScale().x).y);
 	}
 	else
 	{

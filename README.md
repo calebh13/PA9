@@ -9,6 +9,7 @@ Powered by [SFML](https://www.sfml-dev.org/index.php).\
 ### Game Instructions
 Use the mouse to move your player around. Press or hold spacebar to shoot.\
 The goal of the game is to shoot the centipede and survive for as many rounds as possible.\
+Shooting the centipede's body will knock a segment off, while shooting the head will reduce its health.\
 \
 # IMPORTANT: Build Requirements
 You must set the environment variable %SFML\_DIR% to your SFML directory (the one with bin, lib, etc.)\

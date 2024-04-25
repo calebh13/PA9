@@ -294,7 +294,7 @@ void GameWrapper::run(void)
                 case action::RESPAWN:
                 {
                     std::cout << "Respawning\n";
-                    player->setPosition(Grid::getGridPos(30, 30, *window));
+                    player->setPosition(Grid::getGridPos(32, 32, *window));
                     player->heal();
                     player->setRespawnCooldown(60);
                     soundList.at("PlayerDeath").play();
@@ -363,7 +363,7 @@ void GameWrapper::run(void)
                 case action::RESPAWN:
                 {
                     std::cout << "Respawning\n";
-                    player->setPosition(Grid::getGridPos(30, 30, *window));
+                    player->setPosition(Grid::getGridPos(32, 32, *window));
                     player->setRespawnCooldown(60);
                     player->heal();
                     soundList.at("PlayerDeath").play();
