@@ -1,4 +1,5 @@
 # Centipede
+Note: this code is as-is from my freshman year, and does not necessarily reflect my current C++ skills or design preferences.
 ### WSU CPTS 122 Spring 2024 PA 9
 A recreation of the 1981 Atari classic Centipede.\
 \
